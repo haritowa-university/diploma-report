@@ -1,0 +1,32 @@
+\input{sections/06-economics/initialdata.tex}
+
+% Расчет трудоёмкости разработки программного продукта
+% Calculations
+\ADD{\powerConsumtionTaskDefinitionDesign}{\powerConsumtionTaskDefinitionDevelopment}{\temp}
+\ADD{\temp}{\powerConsumtionTaskDefinitionTesting}{\temp}
+\ADD{\temp}{\powerConsumtionCodingDesign}{\temp}
+\ADD{\temp}{\powerConsumtionCodingDevelopment}{\temp}
+\ADD{\temp}{\powerConsumtionCodingTesting}{\temp}
+\MULTIPLY{\temp}{8}{\totalPowerConsumtionDevelopment}
+
+% Formulas
+\newcommand{\powerConsumtionDevelopmentFormula}[1]{%
+\powerConsumtionDevelopment = (\sum_{i=1}^{#1} \powerConsumtionTaskDefinitionI + \sum_{i=1}^{#1} \powerConsumtionCodingI) \cdot 8%
+}
+
+\newcommand{\powerConsumtionDevelopmentFormulaApplied}{%
+\begin{center}
+\(\powerConsumtionDevelopmentFormula{3} = (\powerConsumtionTaskDefinitionDesign + \powerConsumtionTaskDefinitionDevelopment + \powerConsumtionTaskDefinitionTesting + \powerConsumtionCodingDesign + \powerConsumtionCodingDevelopment + \powerConsumtionCodingTesting) \cdot 8 = \totalPowerConsumtionDevelopment \, \days\)
+\end{center}
+}
+
+\newcommand{\powerConsumtionDevelopmentEquation}{%
+\begin{equation}\label{powerConsumtionDevelopmentEquation}
+\powerConsumtionDevelopmentFormula{n}
+\end{equation}
+\begin{explanation}
+где & $ n $ & количество этапов разработки программы; \\
+    & $ \powerConsumtionTaskDefinitionI $ & трудоёмкость постановки задачи на \(i\)-м этапе разработки программы, дней; \\
+    & $ \powerConsumtionCodingI $ & трудоёмкость программирования задачи на \(i\)-м этапе разработки программы, дней.
+\end{explanation}
+}
