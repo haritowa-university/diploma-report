@@ -50,14 +50,43 @@
 \end{explanation}
 }
 
-\newcommand{\powerConsumtionDevelopmentFormulaApplied}{%
+\newcommand{\energyHourCostFormulaApplied}{%
 \begin{center}
 \(\electricityCost = \pcEnergyConsumptionValue \cdot \energyConsumptionCostValue = \electricityCostValue \, \ye\)
 \end{center}
 }
 
+%% Amortization PC renovation cost
+\MULTIPLY{\pcCostValue}{\priceIncreaseCoefValue}{\temp}
+\MULTIPLY{\temp}{\mountCoefValue}{\temp}
+\MULTIPLY{\temp}{\amortizationNormValue}{\temp}
+\MULTIPLY{\temp}{0.01}{\pcAmortizationCostResult}
+\ROUND[1]{\pcAmortizationCostResult}{\pcAmortizationCostResult}
 
+\newcommand{\pcAmortizationCostFormula}{
+\pcAmortizationCost = \pcCost \cdot \priceIncreaseCoef \cdot \mountCoef \cdot \frac{\amortizationNorm}{100} = \pcCostBalance \cdot \frac{\amortizationNorm}{100}
+}
 
+\newcommand{\pcAmortizationCostEquation}{
+\begin{equation}\label{pcAmortizationCostEquation}
+\pcAmortizationCostFormula,
+\end{equation}
+\begin{explanation}
+где & $ \pcCost $ & цена \pc на момент его выпуска, \ye; \\
+    & $ \priceIncreaseCoef $ & коэффициент удорожания \pc; \\
+    & $ \mountCoef $ & коэффициент, учитывающий затраты на монтаж и транспортировку \pc; \\
+    & $ \pcCostBalance $ & балансовая стоимость \pcye; \\
+    & $ \amortizationNorm $ & норма амортизационных отчислений на \pc.
+\end{explanation}
+}
+
+\newcommand{\pcAmortizationCostFormulaApplied}{%
+\begin{center}
+\(\pcAmortizationCost = \pcCostValue \cdot \priceIncreaseCoefValue \cdot \mountCoefValue \cdot \frac{\amortizationNormValue}{100} = \pcAmortizationCostResult \, \ye\)
+\end{center}
+}
+
+%% PC hour cost
 \newcommand{\pcHourCostFormula}{%
 \cpuTimeCost = \electricityCost + \frac{\pcAmortizationCost + \pcRepairCost + \devPlaceAmortizationCost + \devPlaceRepairCost + \devPlaceRentCost}{\pcTimeFound}
 }
