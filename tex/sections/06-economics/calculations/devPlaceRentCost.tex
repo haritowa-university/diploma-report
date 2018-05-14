@@ -1,4 +1,5 @@
-\FPeval{\devPlaceRentCostResult}{clip(\pcConsumedPlaceValue * \additionalDevPlaceCoefValue * \rentNormValue * \devPlaceCommfrotCoefValue * \devPlaceGeoEncreaseCoefValue * 12)}
+\FPeval{\devPlaceRentCostResult}{\pcConsumedPlaceValue * \additionalDevPlaceCoefValue * \rentNormValue * \devPlaceCommfrotCoefValue * \devPlaceGeoEncreaseCoefValue * 12}
+\FPeval{\devPlaceRentCostResult}{clip(round(\devPlaceRentCostResult, 3))}
 
 \newcommand{\devPlaceRentCostFormula}{
 \devPlaceRentCost = \pcConsumedPlace \cdot \additionalDevPlaceCoef \cdot \rentNorm \cdot \devPlaceCommfrotCoef \cdot \devPlaceGeoEncreaseCoef \cdot 12
@@ -19,6 +20,6 @@
 
 \newcommand{\devPlaceRentCostFormulaApplied}{%
 \begin{center}
-\(\devPlaceRentCost = \pcConsumedPlaceValue \cdot \additionalDevPlaceCoefValue \cdot \rentNormValue \cdot \devPlaceCommfrotCoefValue \cdot \devPlaceGeoEncreaseCoefValue \cdot 12 = \devPlaceRentCostResult \, \ye\)
+\(\devPlaceRentCost = \num{\pcConsumedPlaceValue} \cdot \num{\additionalDevPlaceCoefValue} \cdot \num{\rentNormValue} \cdot \num{\devPlaceCommfrotCoefValue} \cdot \num{\devPlaceGeoEncreaseCoefValue} \cdot \num{12} = \num{\devPlaceRentCostResult} \, \ye\)
 \end{center}
 }

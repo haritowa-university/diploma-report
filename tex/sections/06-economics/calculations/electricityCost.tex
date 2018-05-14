@@ -1,5 +1,6 @@
 %% Energy hour price
 \FPeval{\electricityCostValue}{clip(\pcEnergyConsumptionValue * \energyConsumptionCostValue)}
+\FPeval{\electricityCostResult}{\electricityCostValue}
 
 \newcommand{\energyHourCostFormula}{
 \electricityCost = \pcEnergyConsumption \cdot \energyConsumptionCost
@@ -17,6 +18,6 @@
 
 \newcommand{\energyHourCostFormulaApplied}{%
 \begin{center}
-\(\electricityCost = \pcEnergyConsumptionValue \cdot \energyConsumptionCostValue = \electricityCostValue \, \ye\)
+\(\electricityCost = \num{\pcEnergyConsumptionValue} \cdot \num{\energyConsumptionCostValue} = \num{\electricityCostValue} \, \ye\)
 \end{center}
 }

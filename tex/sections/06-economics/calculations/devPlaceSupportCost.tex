@@ -1,5 +1,6 @@
 \FPeval{\devPlaceBalanceCostResult}{\devPlaceMeterCostValue * \additionalDevPlaceCoefValue * \pcConsumedPlaceValue}
 \FPeval{\devPlaceSupportCostValue}{clip(\devPlaceBalanceCostResult * \devPlaceSupportCoefValue)}
+\FPeval{\devPlaceRepairCostResult}{\devPlaceSupportCostValue}
 
 \newcommand{\devPlaceSupportCostFormula}{
 \devPlaceRepairCost = \devPlaceBalancePrice \cdot \devPlaceSupportCoef
@@ -17,6 +18,6 @@
 
 \newcommand{\devPlaceSupportCostFormulaApplied}{%
 \begin{center}
-\(\devPlaceRepairCost = \devPlaceMeterCostValue \cdot \additionalDevPlaceCoefValue \cdot \pcConsumedPlaceValue \cdot \devPlaceSupportCoefValue = \devPlaceSupportCostValue \, \ye\)
+\(\devPlaceRepairCost = \num{\devPlaceMeterCostValue} \cdot \num{\additionalDevPlaceCoefValue} \cdot \num{\pcConsumedPlaceValue} \cdot \num{\devPlaceSupportCoefValue} = \num{\devPlaceSupportCostValue} \, \ye\)
 \end{center}
 }

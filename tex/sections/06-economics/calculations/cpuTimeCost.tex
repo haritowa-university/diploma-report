@@ -1,4 +1,7 @@
 %% PC hour cost
+\FPeval{\cpuTimeCostResult}{\electricityCostResult + (\pcAmortizationCostResult + \pcRepairCostResult + \devPlaceAmortizationCostResult + \devPlaceRepairCostResult + \devPlaceRentCostResult) / (\pcTimeFundResult)}
+\FPeval{\cpuTimeCostResult}{clip(round(\cpuTimeCostResult, 3))}
+
 \newcommand{\pcHourCostFormula}{%
 \cpuTimeCost = \electricityCost + \frac{\pcAmortizationCost + \pcRepairCost + \devPlaceAmortizationCost + \devPlaceRepairCost + \devPlaceRentCost}{\pcTimeFound}
 }
@@ -16,4 +19,10 @@
     & $ \devPlaceRentCost $ & годовая величина арендных платежей за помещение, занимаемое \pcye; \\
     & $ \pcTimeFound $ & годовой фонд времени работы \pcye.
 \end{explanation}
+}
+
+\newcommand{\pcHourCostFormulaApplied}{%
+\begin{center}
+\(\cpuTimeCost = \num{\electricityCostResult} + \frac{\num{\pcAmortizationCostResult} + \num{\pcRepairCostResult} + \num{\devPlaceAmortizationCostResult} + \num{\devPlaceRepairCostResult} + \num{\devPlaceRentCostResult}}{\num{\pcTimeFundResult}} = \num{\cpuTimeCostResult} \, \ye\)
+\end{center}
 }

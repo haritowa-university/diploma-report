@@ -1,4 +1,5 @@
 \FPeval{\pcWorkabilityFundTotal}{clip(\pcWorkloadValue * \pcAverageUptimeValue)}
+\FPeval{\pcTimeFundResult}{\pcWorkabilityFundTotal}
 
 \newcommand{\pcWorkabilityFundFormula}{
 \pcWorkabilityFund = \pcWorkload \cdot \pcAverageUptime
@@ -16,6 +17,6 @@
 
 \newcommand{\pcWorkabilityFundFormulaApplied}{%
 \begin{center}
-\(\pcWorkabilityFund = \pcWorkloadValue \cdot \pcAverageUptimeValue = \pcWorkabilityFundTotal \, \hoursShort\)
+\(\pcWorkabilityFund = \num{\pcWorkloadValue} \cdot \num{\pcAverageUptimeValue} = \num{\pcWorkabilityFundTotal} \, \hoursShort\)
 \end{center}
 }
