@@ -1,0 +1,25 @@
+\FPeval{\devPlaceRentCostResult}{\pcConsumedPlaceValue * \additionalDevPlaceCoefValue * \rentNormValue * \devPlaceCommfrotCoefValue * \devPlaceGeoEncreaseCoefValue * 12}
+\FPeval{\devPlaceRentCostResult}{clip(round(\devPlaceRentCostResult, 3))}
+
+\newcommand{\devPlaceRentCostFormula}{
+\devPlaceRentCost = \pcConsumedPlace \cdot \additionalDevPlaceCoef \cdot \rentNorm \cdot \devPlaceCommfrotCoef \cdot \devPlaceGeoEncreaseCoef \cdot 12
+}
+
+\newcommand{\devPlaceRentCostEquation}{
+\begin{equation}\label{devPlaceRentCostEquation}
+\devPlaceRentCostFormula,
+\end{equation}
+\begin{explanation}
+где & $ \pcConsumedPlace $ & площадь, занимаемая ПК, \meterSquare; \\
+    & $ \additionalDevPlaceCoef $ & коэффициент, учитывающий дополнительную площадь; \\
+    & $ \rentNorm $ & ставка арендных платежей за помещение; \\
+    & $ \devPlaceCommfrotCoef $ & коэффициент комфортности помещения; \\
+    & $ \devPlaceGeoEncreaseCoef $ & повышающий коэффициент, учитывающий географическое размещение площади. \\
+\end{explanation}
+}
+
+\newcommand{\devPlaceRentCostFormulaApplied}{%
+\begin{center}
+\(\devPlaceRentCost = \num{\pcConsumedPlaceValue} \cdot \num{\additionalDevPlaceCoefValue} \cdot \num{\rentNormValue} \cdot \num{\devPlaceCommfrotCoefValue} \cdot \num{\devPlaceGeoEncreaseCoefValue} \cdot \num{12} = \num{\devPlaceRentCostResult} \, \ye\)
+\end{center}
+}
