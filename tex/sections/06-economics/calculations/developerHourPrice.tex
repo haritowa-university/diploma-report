@@ -1,0 +1,26 @@
+%% PC hour cost
+% \FPeval{\cpuTimeCostResult}{\electricityCostResult + (\pcAmortizationCostResult + \pcRepairCostResult + \devPlaceAmortizationCostResult + \devPlaceRepairCostResult + \devPlaceRentCostResult) / (\pcTimeFundResult)}
+% \FPeval{\cpuTimeCostResult}{clip(round(\cpuTimeCostResult, 3))}
+
+\newcommand{\developerHourPriceFormula}{%
+\developerHourPrice = \productComplexity \cdot \developerHourRate \cdot (\num{1} + \bonuceRateCoef) \cdot (\num{1} + \additionalSalaryCoef) \cdot (\num{1} + \salaryFundCoef)
+}
+
+\newcommand{\developerHourPriceEquation}{
+\begin{equation}\label{developerHourPriceEquation}
+\developerHourPriceFormula,
+\end{equation}
+\begin{explanation}
+где & $ \productComplexity $ & трудоёмкость разработки программного продукта, чел-ч; \\
+    & $ \developerHourRate $ & среднечасовая ставка работника, осуществляющего разработку программного продукта, \ye; \\
+    & $ \bonuceRateCoef $ & коэффициент, учитывающий процент премий в организации-разработчике; \\
+    & $ \additionalSalaryCoef $ & коэффициент, учитывающий дополнительную заработную плату; \\
+    & $ \salaryFundCoef $ & коёццифиент, учитывающий отчисления от фонда заработной платы.
+\end{explanation}
+}
+
+\newcommand{\developerHourPriceFormulaApplied}{%
+\begin{center}
+EMPTY
+\end{center}
+}
