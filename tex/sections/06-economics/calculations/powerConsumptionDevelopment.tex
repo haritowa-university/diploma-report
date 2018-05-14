@@ -1,0 +1,23 @@
+% Расчет трудоёмкости разработки программного продукта
+\FPeval{\totalPowerConsumptionDevelopment}{clip((\powerConsumptionTaskDefinitionDesign + \powerConsumptionTaskDefinitionDevelopment + \powerConsumptionTaskDefinitionTesting + \powerConsumptionCodingDesign + \powerConsumptionCodingDevelopment + \powerConsumptionCodingTesting) * 8)}
+
+\newcommand{\powerConsumptionDevelopmentFormula}[1]{%
+\powerConsumptionDevelopment = (\sum_{i=1}^{#1} \powerConsumptionTaskDefinitionI + \sum_{i=1}^{#1} \powerConsumptionCodingI) \cdot 8%
+}
+
+\newcommand{\powerConsumptionDevelopmentFormulaApplied}{%
+\begin{center}
+\(\powerConsumptionDevelopmentFormula{3} = (\powerConsumptionTaskDefinitionDesign + \powerConsumptionTaskDefinitionDevelopment + \powerConsumptionTaskDefinitionTesting + \powerConsumptionCodingDesign + \powerConsumptionCodingDevelopment + \powerConsumptionCodingTesting) \cdot 8 = \totalPowerConsumptionDevelopment \, \days\)
+\end{center}
+}
+
+\newcommand{\powerConsumptionDevelopmentEquation}{%
+\begin{equation}\label{powerConsumptionDevelopmentEquation}
+\powerConsumptionDevelopmentFormula{n}
+\end{equation}
+\begin{explanation}
+где & $ n $ & количество этапов разработки программы; \\
+    & $ \powerConsumptionTaskDefinitionI $ & трудоёмкость постановки задачи на \(i\)-м этапе разработки программы, дней; \\
+    & $ \powerConsumptionCodingI $ & трудоёмкость программирования задачи на \(i\)-м этапе разработки программы, дней.
+\end{explanation}
+}

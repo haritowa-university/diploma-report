@@ -1,17 +1,22 @@
-\COPY{2}{\powerConsumptionTaskDefinitionDesign}
-\COPY{1}{\powerConsumptionTaskDefinitionDevelopment}
-\COPY{1}{\powerConsumptionTaskDefinitionTesting}
+\FPeval{\powerConsumptionTaskDefinitionDesign}{2}
+\FPeval{\powerConsumptionTaskDefinitionDevelopment}{1}
+\FPeval{\powerConsumptionTaskDefinitionTesting}{1}
 
-\COPY{0}{\powerConsumptionCodingDesign}
-\COPY{25}{\powerConsumptionCodingDevelopment}
-\COPY{5}{\powerConsumptionCodingTesting}
+\FPeval{\powerConsumptionCodingDesign}{0}
+\FPeval{\powerConsumptionCodingDevelopment}{25}
+\FPeval{\powerConsumptionCodingTesting}{5}
 
-\COPY{0.25}{\pcEnergyConsumptionValue}
-\COPY{0.25}{\energyConsumptionCostValue}
+\FPeval{\pcEnergyConsumptionValue}{0.25}
+\FPeval{\energyConsumptionCostValue}{0.25}
 
-\COPY{1500}{\pcCostValue}
-\COPY{1}{\priceIncreaseCoefValue}
-\COPY{1.05}{\mountCoefValue}
-\COPY{10}{\amortizationNormValue}
+\FPeval{\pcCostValue}{1500}
+\FPeval{\priceIncreaseCoefValue}{1}
+\FPeval{\mountCoefValue}{1.05}
+\FPeval{\amortizationNormValue}{10}
 
-\COPY{0.13}{\pcMaintainanceCoefValue}
+\FPeval{\pcMaintainanceCoefValue}{0.13}
+
+\FPeval{\devPlaceMeterCostValue}{300}
+\FPeval{\additionalDevPlaceCoefValue}{3}
+\FPeval{\pcConsumedPlaceValue}{1}
+\FPeval{\amortizationDevPlaceNormValue}{1.2}

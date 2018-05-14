@@ -1,0 +1,22 @@
+%% Energy hour price
+\FPeval{\electricityCostValue}{clip(\pcEnergyConsumptionValue * \energyConsumptionCostValue)}
+
+\newcommand{\energyHourCostFormula}{
+\electricityCost = \pcEnergyConsumption \cdot \energyConsumptionCost
+}
+
+\newcommand{\energyHourCostEquation}{
+\begin{equation}\label{energyHourCostEquation}
+\energyHourCostFormula,
+\end{equation}
+\begin{explanation}
+где & $ \pcEnergyConsumption $ & среднечасовое потребление электроэнергии \pc, \kvtShort; \\
+    & $ \energyConsumptionCost $ & стоимость киловатт-часа электроэнергии, \ye
+\end{explanation}
+}
+
+\newcommand{\energyHourCostFormulaApplied}{%
+\begin{center}
+\(\electricityCost = \pcEnergyConsumptionValue \cdot \energyConsumptionCostValue = \electricityCostValue \, \ye\)
+\end{center}
+}

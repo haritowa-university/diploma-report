@@ -1,0 +1,22 @@
+%% PC Support price
+\FPeval{\pcRepairCostResult}{clip(\pcBalanceCostResult * \pcMaintainanceCoefValue)}
+
+\newcommand{\pcSupportCostFormula}{
+\pcRepairCost = \pcCostBalance \cdot \pcMaintainanceCoef
+}
+
+\newcommand{\pcSupportCostEquation}{
+\begin{equation}\label{pcSupportCostEquation}
+\pcSupportCostFormula,
+\end{equation}
+\begin{explanation}
+где & $ \pcCostBalance $ & балансовая стоимость \pcye; \\
+    & $ \pcMaintainanceCoef $ & коэффициент, учитывающий затраты на ремонт и техническое обсолуживание \pc, в том числе затраты на запчасти, зарплату ремонтного персонала и др.
+\end{explanation}
+}
+
+\newcommand{\pcSupportCostFormulaApplied}{%
+\begin{center}
+\(\pcRepairCost = \pcCostValue \cdot \priceIncreaseCoefValue \cdot \mountCoefValue \cdot \pcMaintainanceCoefValue = \pcRepairCostResult \, \ye\)
+\end{center}
+}
