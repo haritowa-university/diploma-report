@@ -1,6 +1,4 @@
-%% PC hour cost
-% \FPeval{\cpuTimeCostResult}{\electricityCostResult + (\pcAmortizationCostResult + \pcRepairCostResult + \devPlaceAmortizationCostResult + \devPlaceRepairCostResult + \devPlaceRentCostResult) / (\pcTimeFundResult)}
-% \FPeval{\cpuTimeCostResult}{clip(round(\cpuTimeCostResult, 3))}
+\FPeval{\developerHourPriceValue}{clip(round((\productComplexityValue * \developerHourRateValue * (1 + \bonuceRateCoefValue) * (1 + \additionalSalaryCoefValue) * (1 + \salaryFundCoefValue)), 2))}
 
 \newcommand{\developerHourPriceFormula}{%
 \developerHourPrice = \productComplexity \cdot \developerHourRate \cdot (\num{1} + \bonuceRateCoef) \cdot (\num{1} + \additionalSalaryCoef) \cdot (\num{1} + \salaryFundCoef)
@@ -21,6 +19,6 @@
 
 \newcommand{\developerHourPriceFormulaApplied}{%
 \begin{center}
-EMPTY
+\(\developerHourPrice = \num{\productComplexityValue} \cdot \num{\developerHourRateValue} \cdot (\num{1} + \num{\bonuceRateCoefValue}) \cdot (\num{1} + \num{\additionalSalaryCoefValue}) \cdot (\num{1} + \num{\salaryFundCoefValue}) = \num{\developerHourPriceValue}\)
 \end{center}
 }
