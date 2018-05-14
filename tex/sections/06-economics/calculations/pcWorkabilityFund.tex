@@ -1,0 +1,21 @@
+\FPeval{\pcWorkabilityFundTotal}{clip(\pcWorkloadValue * \pcAverageUptimeValue)}
+
+\newcommand{\pcWorkabilityFundFormula}{
+\pcWorkabilityFund = \pcWorkload \cdot \pcAverageUptime
+}
+
+\newcommand{\pcWorkabilityFundEquation}{
+\begin{equation}\label{pcWorkabilityFundEquation}
+\pcWorkabilityFundFormula,
+\end{equation}
+\begin{explanation}
+где & $ \pcWorkload $ & среднесуточная фактичная загрузка ПК, ч; \\
+    & $ \pcAverageUptime $ & среднее количество дней работы ПК в год. \\
+\end{explanation}
+}
+
+\newcommand{\pcWorkabilityFundFormulaApplied}{%
+\begin{center}
+\(\pcWorkabilityFund = \pcWorkloadValue \cdot \pcAverageUptimeValue = \pcWorkabilityFundTotal \, \hoursShort\)
+\end{center}
+}
