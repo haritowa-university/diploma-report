@@ -1,0 +1,22 @@
+\FPeval{\devPlaceBalanceCostResult}{\devPlaceMeterCostValue * \additionalDevPlaceCoefValue * \pcConsumedPlaceValue}
+\FPeval{\devPlaceSupportCostValue}{clip(\devPlaceBalanceCostResult * \devPlaceSupportCoefValue)}
+
+\newcommand{\devPlaceSupportCostFormula}{
+\devPlaceRepairCost = \devPlaceBalancePrice \cdot \devPlaceSupportCoef
+}
+
+\newcommand{\devPlaceSupportCostEquation}{
+\begin{equation}\label{devPlaceSupportCostEquation}
+\devPlaceSupportCostFormula,
+\end{equation}
+\begin{explanation}
+где & $ \devPlaceSupportCoef $ & коэффициент, учитывающий затраты на ремонт и эксплуатацию производственных площадей; \\
+    & $ \devPlaceBalancePrice $ & балансовая стоимость площадей, \ye. \\
+\end{explanation}
+}
+
+\newcommand{\devPlaceSupportCostFormulaApplied}{%
+\begin{center}
+\(\devPlaceRepairCost = \devPlaceMeterCostValue \cdot \additionalDevPlaceCoefValue \cdot \pcConsumedPlaceValue \cdot \devPlaceSupportCoefValue = \devPlaceSupportCostValue \, \ye\)
+\end{center}
+}
