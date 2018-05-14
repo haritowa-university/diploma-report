@@ -32,6 +32,7 @@
 }
 
 
+
 % Расчет стоимости машино-часа работы ПК
 %% Energy hour price
 \MULTIPLY{\pcEnergyConsumptionValue}{\energyConsumptionCostValue}{\electricityCostValue}
@@ -56,9 +57,12 @@
 \end{center}
 }
 
+
+
 %% Amortization PC renovation cost
 \MULTIPLY{\pcCostValue}{\priceIncreaseCoefValue}{\temp}
 \MULTIPLY{\temp}{\mountCoefValue}{\temp}
+\COPY{\temp}{\pcBalanceCostResult}
 \MULTIPLY{\temp}{\amortizationNormValue}{\temp}
 \MULTIPLY{\temp}{0.01}{\pcAmortizationCostResult}
 \ROUND[1]{\pcAmortizationCostResult}{\pcAmortizationCostResult}
@@ -85,6 +89,33 @@
 \(\pcAmortizationCost = \pcCostValue \cdot \priceIncreaseCoefValue \cdot \mountCoefValue \cdot \frac{\amortizationNormValue}{100} = \pcAmortizationCostResult \, \ye\)
 \end{center}
 }
+
+
+
+%% PC Support price
+\MULTIPLY{\pcBalanceCostResult}{\pcMaintainanceCoefValue}{\pcRepairCostResult}
+
+\newcommand{\pcSupportCostFormula}{
+\pcRepairCost = \pcCostBalance \cdot \pcMaintainanceCoef
+}
+
+\newcommand{\pcSupportCostEquation}{
+\begin{equation}\label{pcSupportCostEquation}
+\pcSupportCostFormula,
+\end{equation}
+\begin{explanation}
+где & $ \pcCostBalance $ & балансовая стоимость \pcye; \\
+    & $ \pcMaintainanceCoef $ & коэффициент, учитывающий затраты на ремонт и техническое обсолуживание \pc, в том числе затраты на запчасти, зарплату ремонтного персонала и др.
+\end{explanation}
+}
+
+\newcommand{\pcSupportCostFormulaApplied}{%
+\begin{center}
+\(\pcRepairCost = \pcCostValue \cdot \priceIncreaseCoefValue \cdot \mountCoefValue \cdot \pcMaintainanceCoefValue = \pcRepairCostResult \, \ye\)
+\end{center}
+}
+
+
 
 %% PC hour cost
 \newcommand{\pcHourCostFormula}{%
