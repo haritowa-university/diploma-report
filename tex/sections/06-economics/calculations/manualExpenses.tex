@@ -1,0 +1,25 @@
+\FPeval{\manualExpensesValue}{clip(round((\singleManualExecutionEffortValue * \manualExecutionRateValue * \monkeyHourRateValue * (1 + \bonuceRateCoefValue) * (1 + \additionalSalaryCoefValue) * (1 + \salaryFundCoefValue)), 3))}
+
+\newcommand{\manualExpensesFormula}{%
+\manualExpenses = \singleManualExecutionEffort \cdot \manualExecutionRate \cdot \monkeyHourRate \cdot (1 + \bonuceRateCoef) \cdot (1 + \additionalSalaryCoef) \cdot (1 + \salaryFundCoef)
+}
+
+\newcommand{\manualExpensesEquation}{
+\begin{equation}\label{manualExpensesEquation}
+\manualExpensesFormula,
+\end{equation}
+\begin{explanation}
+где & $ \singleManualExecutionEffort $ & трудоёмкость разового решения задачи вручную, чел-ч.; \\
+    & $ \manualExecutionRate $ & периодичность решения задачи в течение года, раз/год; \\
+    & $ \monkeyHourRate $ & среднечасовая ставка работника, осуществляющего ручной расчёт задачи, \ye; \\
+    & $ \bonuceRateCoef $ & коэффициент, учитывающий процент премий; \\
+    & $ \additionalSalaryCoef $ & коэффициент, учитывающий дополнительную заработную плату; \\
+    & $ \salaryFundCoef $ & коэффициент, учитывающий отчисления от фонда заработной платы.
+\end{explanation}
+}
+
+\newcommand{\manualExpensesFormulaApplied}{%
+\begin{center}
+\(\manualExpenses = \num{\singleManualExecutionEffortValue} \cdot \num{\manualExecutionRateValue} \cdot \num{\monkeyHourRateValue} \cdot (1 + \num{\bonuceRateCoefValue}) \cdot (1 + \num{\additionalSalaryCoefValue}) \cdot (1 + \num{\salaryFundCoefValue}) = \num{\manualExpensesValue} \, \ye\)
+\end{center}
+}
