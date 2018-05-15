@@ -1,0 +1,21 @@
+\FPeval{\softwareDebugCostValue}{clip(round((\softwareDebugComplexityValue * \cpuTimeCostResult), 2))}
+
+\newcommand{\softwareDebugCostFormula}{%
+\softwareDebugCost = \softwareDebugComplexity \cdot \cpuTimeCost
+}
+
+\newcommand{\softwareDebugCostEquation}{
+\begin{equation}\label{softwareDebugCostEquation}
+\softwareDebugCostFormula,
+\end{equation}
+\begin{explanation}
+где & $ \softwareDebugComplexity $ & трудоёмкость отладки программы, ч; \\
+    & $ \cpuTimeCost $ & стоимость машино-часа работы ПК, р./ч.
+\end{explanation}
+}
+
+\newcommand{\softwareDebugCostFormulaApplied}{%
+\begin{center}
+\(\softwareDebugCost = \num{\softwareDebugComplexityValue} \cdot \num{\cpuTimeCostResult} = \num{\softwareDebugCostValue} \, \ye\)
+\end{center}
+}
