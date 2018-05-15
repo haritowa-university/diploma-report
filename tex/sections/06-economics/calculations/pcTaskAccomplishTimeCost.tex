@@ -1,0 +1,48 @@
+\FPeval{\manualInputTimeValue}{clip(round(((\averageSymbolsPerInputValue * \symbolsSpeedNormValue) / 100), 1))}
+
+\newcommand{\manualInputTimeFormula}{%
+\manualInputTime = \frac{\averageSymbolsPerInput \cdot \symbolsSpeedNorm}{100}
+}
+
+\newcommand{\manualInputTimeEquation}{
+\begin{equation}\label{manualInputTimeEquation}
+\manualInputTimeFormula,
+\end{equation}
+\begin{explanation}
+где & $ \averageSymbolsPerInput $ & среднее количество знаков, набираемых с клавиатуры при вводе исходных данных; \\
+    & $ \symbolsSpeedNorm $ & норматив набора 100 знаков, мин.
+\end{explanation}
+}
+
+\newcommand{\manualInputTimeFormulaApplied}{%
+\begin{center}
+\(\manualInputTime = \frac{\num{\averageSymbolsPerInputValue} \cdot \num{\symbolsSpeedNormValue}}{100} = \num{\manualInputTimeValue} \, \text{мин}\)
+\end{center}
+}
+
+
+
+
+\FPeval{\pcTaskAccomplishTimeCostValue}{clip(round(((\manualInputTimeValue + \calculationTimeValue + \manualOutputTimeValue) * ((1 + \preparationTimeCoefValue) / 60)), 3))}
+
+\newcommand{\pcTaskAccomplishTimeCostFormula}{%
+\pcTaskAccomplishTimeCost = (\manualInputTime + \calculationTime + \manualOutputTime) \cdot \frac{1 + \preparationTimeCoef}{60}
+}
+
+\newcommand{\pcTaskAccomplishTimeCostEquation}{
+\begin{equation}\label{pcTaskAccomplishTimeCostEquation}
+\pcTaskAccomplishTimeCostFormula,
+\end{equation}
+\begin{explanation}
+где & $ \manualInputTime $ & время ввода в ПК исходных данных, необходимых для решения задачи, мин; \\
+    & $ \calculationTime $ & время вычислений, мин; \\
+    & $ \manualOutputTime $ & время вывода результатов решения задачи (включая время распечатки на принтере), мин; \\
+    & $ \preparationTimeCoef $ & коэффициент, учитывающий подготовительно-заключительное время.
+\end{explanation}
+}
+
+\newcommand{\pcTaskAccomplishTimeCostFormulaApplied}{%
+\begin{center}
+\(\pcTaskAccomplishTimeCost = (\num{\manualInputTimeValue} + \num{\calculationTimeValue} + \num{\manualOutputTimeValue}) \cdot \frac{1 + \num{\preparationTimeCoefValue}}{60} = \num{\pcTaskAccomplishTimeCostValue} \, мин\)
+\end{center}
+}
