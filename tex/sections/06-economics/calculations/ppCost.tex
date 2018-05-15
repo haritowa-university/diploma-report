@@ -1,0 +1,20 @@
+\FPeval{\ppCostValue}{clip(round((\developerHourPriceValue * \plannignAdditionalExpensesCoefValue + \softwareDebugCostValue), 0))}
+
+\newcommand{\ppCostFormula}{%
+\ppCost = \developerHourPrice \cdot \plannignAdditionalExpensesCoef + \softwareDebugCost
+}
+
+\newcommand{\ppCostEquation}{
+\begin{equation}\label{ppCostEquation}
+\ppCostFormula,
+\end{equation}
+\begin{explanation}
+где & $ \plannignAdditionalExpensesCoef $ & коэффициент накладных расходов проектной организации без учёта эксплуатации ПК.
+\end{explanation}
+}
+
+\newcommand{\ppCostFormulaApplied}{%
+\begin{center}
+\(\ppCost = \num{\developerHourPriceValue} \cdot \num{\plannignAdditionalExpensesCoefValue} + \num{\softwareDebugCostValue} = \num{\ppCostValue} \, \ye\)
+\end{center}
+}
