@@ -1,0 +1,21 @@
+\FPeval{\ppOptPriceValue}{clip(round((\ppCostValue + \plannedSoftIncomeValue), 3))}
+
+\newcommand{\ppOptPriceFormula}{%
+\ppOptPrice = \ppCost + \plannedSoftIncome
+}
+
+\newcommand{\ppOptPriceEquation}{
+\begin{equation}\label{ppOptPriceEquation}
+\ppOptPriceFormula,
+\end{equation}
+\begin{explanation}
+где & $ \ppCost $ & себестоимость программы, \ye; \\
+    & $ \plannedSoftIncome $ & плановая прибыль на программу, \ye.
+\end{explanation}
+}
+
+\newcommand{\ppOptPriceFormulaApplied}{%
+\begin{center}
+\(\ppOptPrice = \num{\ppCostValue} + \num{\plannedSoftIncomeValue} = \num{\ppOptPriceValue} \, \ye\)
+\end{center}
+}

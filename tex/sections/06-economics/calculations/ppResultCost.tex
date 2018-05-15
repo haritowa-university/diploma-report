@@ -1,0 +1,23 @@
+\FPeval{\ppResultCostValue}{clip(round(\ppOptPriceValue + (\developerHourPriceValue + \plannedSoftIncomeValue) * \ndsValue, 2))}
+
+\newcommand{\ppResultCostFormula}{%
+\ppResultCost = \ppOptPrice + (\developerHourPrice + \plannedSoftIncome) \cdot \nds
+}
+
+\newcommand{\ppResultCostEquation}{
+\begin{equation}\label{ppResultCostEquation}
+\ppResultCostFormula,
+\end{equation}
+\begin{explanation}
+где & $ \ppOptPrice $ & оптовая цена ПП, \ye; \\
+    & $ \developerHourPrice $ & затраты на заработную плату разработчиков программы, \ye; \\
+    & $ \plannedSoftIncome $ & плановая прибыль на программу, \ye; \\
+    & $ \nds $ & ставка налога на добавленную стоимость, \ye.
+\end{explanation}
+}
+
+\newcommand{\ppResultCostFormulaApplied}{%
+\begin{center}
+\(\ppResultCost = \num{\ppOptPriceValue} + (\num{\developerHourPriceValue} + \num{\plannedSoftIncomeValue}) \cdot \num{\ndsValue} = \ppResultCostValue \, \ye\)
+\end{center}
+}
