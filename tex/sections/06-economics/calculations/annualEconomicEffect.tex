@@ -1,0 +1,22 @@
+\FPeval{\annualEconomicEffectValue}{clip(round((\incomeBoostValue - (\effeciencyCoefValue * \totalCapitalExpensesValue)), 2))}
+
+\newcommand{\annualEconomicEffectFormula}{%
+\annualEconomicEffect = \incomeBoost - \effeciencyCoef \cdot \totalCapitalExpenses
+}
+
+\newcommand{\annualEconomicEffectEquation}{
+\begin{equation}\label{annualEconomicEffectEquation}
+\annualEconomicEffectFormula,
+\end{equation}
+\begin{explanation}
+где & $ \effeciencyCoef $ & коэффициент эффективности, равный ставке за кредиты на рынке долгосрочных кредитов.
+\end{explanation}
+}
+
+\newcommand{\annualEconomicEffectFormulaApplied}{%
+\begin{center}
+\(\annualEconomicEffect = \num{\incomeBoostValue} - \num{\effeciencyCoefValue} \cdot \num{\totalCapitalExpensesValue} = \num{\annualEconomicEffectValue} \, \ye\)
+\end{center}
+}
+
+
