@@ -1,0 +1,21 @@
+\FPeval{\annualExpensesValue}{clip(round((\userSalaryValue + \userPCRentCostValue), 2))}
+
+\newcommand{\annualExpensesFormula}{%
+\annualExpenses = \userSalary + \userPCRentCost
+}
+
+\newcommand{\annualExpensesEquation}{
+\begin{equation}\label{annualExpensesEquation}
+\annualExpensesFormula,
+\end{equation}
+\begin{explanation}
+где & $ \userSalary $ & затраты на заработную плату пользователя программы; \\
+    & $ \userPCRentCost $ & затраты на оплату аренды ПК при решении задачи.
+\end{explanation}
+}
+
+\newcommand{\annualExpensesFormulaApplied}{%
+\begin{center}
+\(\annualExpenses = \num{\userSalaryValue} + \num{\userPCRentCostValue} = \num{\annualExpensesValue} \, \ye\)
+\end{center}
+}

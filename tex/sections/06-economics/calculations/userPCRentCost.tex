@@ -1,0 +1,20 @@
+\FPeval{\userPCRentCostValue}{clip(round((\pcTaskAccomplishTimeCostValue * \manualExecutionRateValue * \cpuTimeCostResult), 2))}
+
+\newcommand{\userPCRentCostFormula}{%
+\userPCRentCost = \pcTaskAccomplishTimeCost \cdot \manualExecutionRate \cdot \cpuTimeCost
+}
+
+\newcommand{\userPCRentCostEquation}{
+\begin{equation}\label{userPCRentCostEquation}
+\userPCRentCostFormula,
+\end{equation}
+\begin{explanation}
+где & $ \cpuTimeCost $ & стоимость одного машино-часа работы ПК.
+\end{explanation}
+}
+
+\newcommand{\userPCRentCostFormulaApplied}{%
+\begin{center}
+\(\userPCRentCost = \num{\pcTaskAccomplishTimeCostValue} \cdot \num{\manualExecutionRateValue} \cdot \num{\cpuTimeCostResult} = \num{\userPCRentCostValue} \, \ye\)
+\end{center}
+}
