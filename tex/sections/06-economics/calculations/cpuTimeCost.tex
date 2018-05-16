@@ -1,14 +1,14 @@
 %% PC hour cost
-\FPeval{\cpuTimeCostResult}{\electricityCostResult + (\pcAmortizationCostResult + \pcRepairCostResult + \devPlaceAmortizationCostResult + \devPlaceRepairCostResult + \devPlaceRentCostResult) / (\pcTimeFundResult)}
+\FPeval{\cpuTimeCostResult}{\electricityCostResult + (\pcAmortizationCostResult + \pcRepairCostResult + \devPlaceAmortizationCostResult + \devPlaceRepairCostResult + \devPlaceRentCostResult) / (\pcPcTimeFundResult)}
 \FPeval{\cpuTimeCostResult}{clip(round(\cpuTimeCostResult, 3))}
 
-\newcommand{\pcHourCostFormula}{%
+\newcommand{\pcPcHourCostFormula}{%
 \cpuTimeCost = \electricityCost + \frac{\pcAmortizationCost + \pcRepairCost + \devPlaceAmortizationCost + \devPlaceRepairCost + \devPlaceRentCost}{\pcTimeFound}
 }
 
-\newcommand{\pcHourCostEquation}{
+\newcommand{\pcPcHourCostEquation}{
 \begin{equation}\label{pcHourCostEquation}
-\pcHourCostFormula,
+\pcPcHourCostFormula,
 \end{equation}
 \begin{explanation}
 где & $ \electricityCost $ & расходы на электроэнергию за час работы \pcye; \\
@@ -21,8 +21,8 @@
 \end{explanation}
 }
 
-\newcommand{\pcHourCostFormulaApplied}{%
+\newcommand{\pcPcHourCostFormulaApplied}{%
 \begin{center}
-\(\cpuTimeCost = \num{\electricityCostResult} + \frac{\num{\pcAmortizationCostResult} + \num{\pcRepairCostResult} + \num{\devPlaceAmortizationCostResult} + \num{\devPlaceRepairCostResult} + \num{\devPlaceRentCostResult}}{\num{\pcTimeFundResult}} = \num{\cpuTimeCostResult} \, \ye\)
+\(\cpuTimeCost = \num{\electricityCostResult} + \frac{\num{\pcAmortizationCostResult} + \num{\pcRepairCostResult} + \num{\devPlaceAmortizationCostResult} + \num{\devPlaceRepairCostResult} + \num{\devPlaceRentCostResult}}{\num{\pcPcTimeFundResult}} = \num{\cpuTimeCostResult} \, \ye\)
 \end{center}
 }
