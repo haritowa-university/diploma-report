@@ -1,0 +1,21 @@
+\FPeval{\plannedSoftIncomeValue}{clip(round((\ppCostValue * \projectIncomeNormValue), 3))}
+
+\newcommand{\plannedSoftIncomeFormula}{%
+\plannedSoftIncome = \ppCost \cdot \projectIncomeNorm
+}
+
+\newcommand{\plannedSoftIncomeEquation}{
+\begin{equation}\label{plannedSoftIncomeEquation}
+\plannedSoftIncomeFormula,
+\end{equation}
+\begin{explanation}
+где & $ \ppCost $ & себестоимость программы, \ye; \\
+    & $ \projectIncomeNorm $ & норма прибыли проектной организации.
+\end{explanation}
+}
+
+\newcommand{\plannedSoftIncomeFormulaApplied}{%
+\begin{center}
+\(\plannedSoftIncome = \num{\ppCostValue} * \num{\projectIncomeNormValue} = \num{\plannedSoftIncomeValue} \, \ye\)
+\end{center}
+}

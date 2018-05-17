@@ -1,0 +1,20 @@
+\FPeval{\incomeBoostValue}{clip(round(((\manualExpensesValue - \annualExpensesValue) * (1 - \incomeTaxValue)), 2))}
+
+\newcommand{\incomeBoostFormula}{%
+\incomeBoost = (\manualExpenses - \annualExpenses) \cdot (1 - \incomeTax)
+}
+
+\newcommand{\incomeBoostEquation}{
+\begin{equation}\label{incomeBoostEquation}
+\incomeBoostFormula,
+\end{equation}
+\begin{explanation}
+где & $ \incomeTax $ & ставка налога на прибыль.
+\end{explanation}
+}
+
+\newcommand{\incomeBoostFormulaApplied}{%
+\begin{center}
+\(\incomeBoost = (\num{\manualExpensesValue} - \num{\annualExpensesValue}) \cdot (1 - \num{\incomeTaxValue}) = \num{\incomeBoostValue} \, \ye\)
+\end{center}
+}

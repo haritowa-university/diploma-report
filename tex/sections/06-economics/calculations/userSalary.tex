@@ -1,0 +1,34 @@
+
+% \newcommand{\userRateFormulaApplied}{}
+
+\FPeval{\userRateValue}{clip(round(((\userAverageSalaryFirstDegreeValue * \degreeSalaryCoefValue) / 170), 2))}
+
+\newcommand{\userRateFormulaApplied}{%
+\begin{center}
+\(\userRate = \frac{\num{\userAverageSalaryFirstDegreeValue} \cdot \num{\degreeSalaryCoefValue}}{\num{170}} = \num{\userRateValue} \, \ye\)
+\end{center}
+}
+
+
+
+\FPeval{\userSalaryValue}{clip(round((\pcTaskAccomplishTimeCostValue * \manualExecutionRateValue * \userRateValue * (1 + \bonuceRateCoefValue) * (1 + \additionalSalaryCoefValue) * (1 + \salaryFundCoefValue)), 1))}
+
+\newcommand{\userSalaryFormula}{%
+\userSalary = \pcTaskAccomplishTimeCost \cdot \manualExecutionRate \cdot \userRate \cdot (1 + \bonuceRateCoef) \cdot (1 + \additionalSalaryCoef) \cdot (1 + \salaryFundCoef)
+}
+
+\newcommand{\userSalaryEquation}{
+\begin{equation}\label{userSalaryEquation}
+\userSalaryFormula,
+\end{equation}
+\begin{explanation}
+где & $ \pcTaskAccomplishTimeCost $ & время решения задачи на ПК, ч; \\
+    & $ \userRate $ & среднечасовая ставка пользователя программы, \ye
+\end{explanation}
+}
+
+\newcommand{\userSalaryFormulaApplied}{%
+\begin{center}
+\(\userSalary = \num{\pcTaskAccomplishTimeCostValue} \cdot \num{\manualExecutionRateValue} \cdot \num{\userRateValue} \cdot (1 + \num{\bonuceRateCoefValue}) \cdot (1 + \num{\additionalSalaryCoefValue}) \cdot (1 + \num{\salaryFundCoefValue}) = \num{\userSalaryValue} \, \ye\)
+\end{center}
+}

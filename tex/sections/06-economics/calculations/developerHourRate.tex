@@ -1,0 +1,22 @@
+\FPeval{\developerHourRateValue}{clip(round(((\averageSalaryFirstDegreeValue * \degreeSalaryCoefValue) / 170), 2))}
+
+\newcommand{\developerHourRateFormula}{%
+\developerHourRate = \frac{\averageSalaryFirstDegree \cdot \degreeSalaryCoef}{\num{170}}
+}
+
+\newcommand{\developerHourRateEquation}{
+\begin{equation}\label{developerHourRateEquation}
+\developerHourRateFormula,
+\end{equation}
+\begin{explanation}
+где & $ \averageSalaryFirstDegree $ & среднемесячная заработная плата работника первого разряда; \\
+    & $ \degreeSalaryCoef $ & тарифный коэффициент работника соответствующего разряда; \\
+    & $ \num{170} $ & среднее нормативное количество рабочих часов в месяце.
+\end{explanation}
+}
+
+\newcommand{\developerHourRateFormulaApplied}{%
+\begin{center}
+\(\developerHourRate = \frac{\num{\averageSalaryFirstDegreeValue} \cdot \num{\degreeSalaryCoefValue}}{\num{170}} = \num{\developerHourRateValue} \, \ye\)
+\end{center}
+}

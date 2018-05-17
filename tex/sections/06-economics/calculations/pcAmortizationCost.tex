@@ -1,0 +1,26 @@
+%% Amortization PC renovation cost
+\FPeval{\pcPcBalanceCostResult}{\pcPcCostValue * \priceIncreaseCoefValue * \mountCoefValue }
+\FPeval{\pcAmortizationCostResult}{clip(\pcPcBalanceCostResult * \amortizationNormValue * 0.01)}
+
+\newcommand{\pcAmortizationCostFormula}{
+\pcAmortizationCost = \pcPcCost \cdot \priceIncreaseCoef \cdot \mountCoef \cdot \frac{\amortizationNorm}{100} = \pcPcCostBalance \cdot \frac{\amortizationNorm}{100}
+}
+
+\newcommand{\pcAmortizationCostEquation}{
+\begin{equation}\label{pcAmortizationCostEquation}
+\pcAmortizationCostFormula,
+\end{equation}
+\begin{explanation}
+где & $ \pcPcCost $ & цена ПК на момент его выпуска, \ye; \\
+    & $ \priceIncreaseCoef $ & коэффициент удорожания ПК; \\
+    & $ \mountCoef $ & коэффициент, учитывающий затраты на монтаж и транспортировку ПК; \\
+    & $ \pcPcCostBalance $ & балансовая стоимость \pcye; \\
+    & $ \amortizationNorm $ & норма амортизационных отчислений на ПК.
+\end{explanation}
+}
+
+\newcommand{\pcAmortizationCostFormulaApplied}{%
+\begin{center}
+\(\pcAmortizationCost = \num{\pcPcCostValue} \cdot \num{\priceIncreaseCoefValue} \cdot \num{\mountCoefValue} \cdot \frac{\num{\amortizationNormValue}}{\num{100}} = \num{\pcAmortizationCostResult} \, \ye\)
+\end{center}
+}

@@ -1,0 +1,22 @@
+\FPeval{\totalCapitalExpensesValue}{clip(round((\capitalExpensesValue + \ppResultCostValue), 2))}
+
+\newcommand{\totalCapitalExpensesFormula}{%
+\totalCapitalExpenses = \capitalExpenses + \ppResultCost
+}
+
+\newcommand{\totalCapitalExpensesEquation}{
+\begin{equation}\label{totalCapitalExpensesEquation}
+\totalCapitalExpensesFormula,
+\end{equation}
+\begin{explanation}
+где & $ \capitalExpenses $ & капитальные и приравненные к ним затраты; \\
+    & $ \ppResultCost $ & отпускная цена программы.
+\end{explanation}
+}
+
+\newcommand{\totalCapitalExpensesFormulaApplied}{%
+\begin{center}
+\(\totalCapitalExpenses = \num{\capitalExpensesValue} + \num{\ppResultCostValue} = \num{\totalCapitalExpensesValue} \, \ye\)
+\end{center}
+}
+

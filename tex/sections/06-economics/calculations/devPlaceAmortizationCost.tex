@@ -1,0 +1,25 @@
+\FPeval{\devPlaceBalanceCostResult}{\devPlaceMeterCostValue * \additionalDevPlaceCoefValue * \pcConsumedPlaceValue}
+\FPeval{\devPlaceAmortizationCostResult}{clip(\devPlaceBalanceCostResult * \amortizationDevPlaceNormValue * 0.01)}
+
+\newcommand{\devPlaceAmortizationCostFormula}{
+\devPlaceAmortizationCost = \devPlaceMeterCost \cdot \additionalDevPlaceCoef \cdot \pcConsumedPlace \cdot \frac{\amortizationDevPlaceNorm}{100} = \devPlaceBalancePrice \cdot \frac{\amortizationDevPlaceNorm}{100}
+}
+
+\newcommand{\devPlaceAmortizationCostEquation}{
+\begin{equation}\label{devPlaceAmortizationCostEquation}
+\devPlaceAmortizationCostFormula,
+\end{equation}
+\begin{explanation}
+где & $ \devPlaceMeterCost $ & цена квадратного метра производственной площади, \ye; \\
+    & $ \additionalDevPlaceCoef $ & коэффициент, учитывающий дополнительную площадь; \\
+    & $ \pcConsumedPlace $ & площадь, занимаемая ПК, \meterSquare; \\
+    & $ \amortizationDevPlaceNorm $ & норма амортизационных отчислений на производственные площади, \%; \\
+    & $ \devPlaceBalancePrice $ & балансовая стоимость площадей, \ye \\
+\end{explanation}
+}
+
+\newcommand{\devPlaceAmortizationCostFormulaApplied}{%
+\begin{center}
+\(\devPlaceAmortizationCost = \num{\devPlaceMeterCostValue} \cdot \num{\additionalDevPlaceCoefValue} \cdot \num{\pcConsumedPlaceValue} \cdot \frac{\num{\amortizationDevPlaceNormValue}}{\num{100}} = \num{\devPlaceAmortizationCostResult} \, \ye\)
+\end{center}
+}

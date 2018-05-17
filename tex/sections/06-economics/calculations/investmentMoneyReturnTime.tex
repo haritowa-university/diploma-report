@@ -1,0 +1,17 @@
+\FPeval{\investmentMoneyReturnTimeValue}{clip(round((\totalCapitalExpensesValue / \incomeBoostValue), 2))}
+
+\newcommand{\investmentMoneyReturnTimeFormula}{%
+\investmentMoneyReturnTime = \frac{\totalCapitalExpenses}{\incomeBoost}
+}
+
+\newcommand{\investmentMoneyReturnTimeEquation}{
+\begin{equation}\label{investmentMoneyReturnTimeEquation}
+\investmentMoneyReturnTimeFormula,
+\end{equation}
+}
+
+\newcommand{\investmentMoneyReturnTimeFormulaApplied}{%
+\begin{center}
+\(\investmentMoneyReturnTime = \frac{\num{\totalCapitalExpensesValue}}{\num{\incomeBoostValue}} = \num{\investmentMoneyReturnTimeValue} \, \text{лет}\)
+\end{center}
+}
