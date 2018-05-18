@@ -1,11 +1,11 @@
 
 % \newcommand{\userRateFormulaApplied}{}
 
-\FPeval{\userRateValue}{clip(round(((\userAverageSalaryFirstDegreeValue * \degreeSalaryCoefValue) / 170), 2))}
+\FPeval{\userRateValue}{clip(round(((\userAverageSalaryFirstDegreeValue * \degreeUserSalaryCoefValue) / 170), 2))}
 
 \newcommand{\userRateFormulaApplied}{%
 \begin{center}
-\(\userRate = \frac{\num{\userAverageSalaryFirstDegreeValue} \cdot \num{\degreeSalaryCoefValue}}{\num{170}} = \num{\userRateValue} \, \ye\)
+\(\userRate = \frac{\num{\userAverageSalaryFirstDegreeValue} \cdot \num{\degreeUserSalaryCoefValue}}{\num{170}} = \num{\userRateValue} \, \ye\)
 \end{center}
 }
 
