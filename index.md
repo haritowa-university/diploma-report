@@ -1,5 +1,6 @@
 ## Записка
-[Актуальная версия записки](https://cl.ly/0k0p1q0I0o2d/release(3).pdf)
+Актуальная версия записки: [Dropbox](https://www.dropbox.com/s/foszpuh3hfiecev/release%286%29.pdf?dl=0)
+[Direct](https://cl.ly/3M1u092g0u39/release(6).pdf)
 
 ## Экономика
 
