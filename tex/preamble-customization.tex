@@ -9,3 +9,5 @@
 \let\oldaddcontentsline\addcontentsline
 \newcommand{\stoptocentries}{\renewcommand{\addcontentsline}[3]{}}
 \newcommand{\starttocentries}{\let\addcontentsline\oldaddcontentsline}
+
+\renewcommand\tabularxcolumn[1]{m{#1}}% for vertical centering text in X column
