@@ -22,3 +22,6 @@
 [Диаграма отправки сообщения](https://github.com/haritowa-university/diploma-report/raw/master/appendecies/message_send.pdf)
 
 [Пользовательский интерфейс](https://github.com/haritowa-university/diploma-report/raw/master/appendecies/user_interface.pdf)
+
+### Другое
+[Штампы на плакаты](https://github.com/haritowa-university/diploma-report/raw/master/appendecies/stamp.pdf)
