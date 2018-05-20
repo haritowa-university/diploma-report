@@ -5,3 +5,7 @@
 \usepackage[final]{pdfpages}
 \usepackage{calculator}
 \usepackage{xifthen}
+
+\let\oldaddcontentsline\addcontentsline
+\newcommand{\stoptocentries}{\renewcommand{\addcontentsline}[3]{}}
+\newcommand{\starttocentries}{\let\addcontentsline\oldaddcontentsline}
