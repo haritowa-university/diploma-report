@@ -1,0 +1,27 @@
+\subsection{Активация устройства}
+\label{sec:usage:deviceactivation}
+
+После успешного подтверждения телефона, пользователь может попасть на один из двух экранов:
+
+\begin{enumerate}
+	\item Экран списка диалогов. Пользователь попадает на этот экран, если текущее устройство является первым устройством, которое регистрируется на указанный ранее номер.
+	\item Экран активации устройства. Если у пользователя уже имеются активные устройства, приложение переходит на экран активации устройства, показанный на рисунке \ref{sec:usage:deviceactivation:newdevice}.
+\end{enumerate}
+
+Если пользователь попал на экран активации устройства -- значит на его остальные устройства было отправлено уведомление с просьбой активировать новое устройство, которое изображено на рисунке \ref{sec:usage:deviceactivation:olddevice}. Пользователь должен нажать <<Разрешить>> на любом другом устройстве для продолжения использования приложения на новом устройстве.
+
+\begin{figure}[h]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[height=0.25\textheight]{inc/img/ui/login_approve_screen.png}
+  \captionof{figure}{Экран активации устройства на новом устройстве}
+  \label{sec:usage:deviceactivation:newdevice}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[height=0.25\textheight]{inc/img/ui/add_new_device_notification.png}
+  \captionof{figure}{Экран активации устройства на старом устройстве}
+  \label{sec:usage:deviceactivation:olddevice}
+\end{minipage}
+\end{figure}
