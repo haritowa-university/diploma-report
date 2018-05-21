@@ -14,8 +14,8 @@
 [Сравнение с последней проверенной версией экономики](https://cl.ly/31420Y1K271M/firstIterationDiff.pdf): слева предыдущий вариант, справа - текущий, красным выделены изменения.
 
 ## Записка
-Актуальная версия записки: [Dropbox](https://www.dropbox.com/s/foszpuh3hfiecev/release%286%29.pdf?dl=0)
-[Direct](https://cl.ly/3M1u092g0u39/release(6).pdf)
+Актуальная версия записки: [Dropbox](https://www.dropbox.com/s/cmegbx3c3lf7sbp/PR-21%283%29.pdf?dl=0)
+[Direct](https://cl.ly/3C2c111Z432p/PR-21(3).pdf)
 
 ## Графический материал
 ### Плакаты
