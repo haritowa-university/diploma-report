@@ -3,6 +3,7 @@
 
 \newpage
 
+\newcommand{\pra}{
 \begin{center}
 \textbf{
 \MakeUppercase{Приложение А}\\
@@ -10,9 +11,10 @@
 Результаты проверки уникальности текста}
 \end{center}
 \addcontentsline{toc}{section}{Приложение А. Результаты проверки уникальности текста}
+}
 
 \pagestyle{empty}
-\includepdf[pages=-,pagecommand={}]{inc/pdf/antiplagiat.pdf}
+\includepdf[scale=0.8,pages=-,pagecommand={\pra}]{inc/pdf/antiplagiat.pdf}
 \newpage
 \pagestyle{fancy}
 
