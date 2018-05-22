@@ -3,10 +3,27 @@
 
 \newpage
 
+\newcommand{\pra}{
 \begin{center}
 \textbf{
 \MakeUppercase{Приложение А}\\
 (обязательное)\\
+Результаты проверки уникальности текста}
+\end{center}
+\addcontentsline{toc}{section}{Приложение А. Результаты проверки уникальности текста}
+}
+
+\pagestyle{empty}
+\includepdf[scale=0.8,pages=-,pagecommand={\pra}]{inc/pdf/antiplagiat.pdf}
+\newpage
+\pagestyle{fancy}
+
+
+
+\begin{center}
+\textbf{
+\MakeUppercase{Приложение Б}\\
+(обязательное)\\
 Графическая часть}
 \end{center}
-\addcontentsline{toc}{section}{Приложение А. Графическая часть}
+\addcontentsline{toc}{section}{Приложение Б. Графическая часть}
