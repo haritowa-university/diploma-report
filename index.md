@@ -18,8 +18,8 @@
 соответствует ранее посчитанному.
 
 ## Записка
-Актуальная версия записки: [Dropbox](https://www.dropbox.com/s/f8bbweu49g34l24/release%288%29.pdf?dl=0)
-[Direct](https://cl.ly/3w2D3v1n2Z3X/release(8).pdf)
+Актуальная версия записки: [Dropbox](https://www.dropbox.com/s/kgfwtl9zjgdfo71/release%2810%29.pdf?dl=0)
+[Direct](https://cl.ly/383P1J2b0w2l/release(10).pdf)
 
 ## Графический материал
 ### Плакаты
@@ -27,5 +27,9 @@
 
 [Пользовательский интерфейс](https://github.com/haritowa-university/diploma-report/raw/master/appendecies/user_interface.pdf)
 
+[Диаграма разблокировки устройства](https://github.com/haritowa-university/diploma-report/raw/master/appendecies/unlock.pdf)
+
 ### Другое
 [Штампы на плакаты](https://github.com/haritowa-university/diploma-report/raw/master/appendecies/stamp.pdf)
+
+[Антиплагиат](https://github.com/haritowa-university/diploma-report/raw/master/tex/inc/pdf/antiplagiat.pdf)
