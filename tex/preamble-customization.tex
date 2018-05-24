@@ -18,3 +18,12 @@
 \captionsetup[code]{
   margin=\fivecharsapprox
 }
+
+\makeatletter
+\renewcommand\subsubsection{
+  \@startsection{subsubsection}{3}%
+    {\fivecharsapprox\bfseries}%
+    {0em \@plus -1ex \@minus -.2ex}%
+    {\z@}%
+    {\raggedright\hyphenpenalty=10000\normalfont\normalsize}}
+\makeatother
