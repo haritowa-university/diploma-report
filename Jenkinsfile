@@ -31,8 +31,8 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'haritowa/bsuir-latex-build-system:0.0.3'
-                    args '-v ${HOME}/bsuir-jenkins/build-result:/build-result -u root'
+                    image 'haritowa/bsuir-latex-build-system:0.0.2'
+                    args '-v ${HOME}/bsuir-jenkins/build-result:/build-result'
                 }
             }
             steps {
