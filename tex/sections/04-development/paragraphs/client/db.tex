@@ -1,0 +1,25 @@
+\subsubsection{}
+\label{sec:development:client:db}
+
+Модуль базы данных содержит в себе набор моделей и методов, выполняющих запросы в базу данных или как-то её изменяющих. 
+Как уже отмечалось в пункте \ref{sec:development:arch:ios:realm}, для описания таблицы в мобильной базе данных \textit{Realm}, достаточно создать новый тип на языке Swift и унаследовать его от типа \textit{Object}. Пример модели базы представлен в листинге \ref{sec:development:client:db:code:model}, а пример запроса в листинге \ref{sec:development:client:db:code:query}.
+
+\begin{code}
+	\inputminted{swift}{inc/src/db_model.swift}
+   \caption{Модель устройства в базе данных}
+   \label{sec:development:client:db:code:model}
+\end{code}
+
+\begin{code}
+	\inputminted{swift}{inc/src/db_query.swift}
+   \caption{Запрос списка устройств конкретного пользователя}
+   \label{sec:development:client:db:code:query}
+\end{code}
+
+Помимо списка моделей и запросов, слой базы данных содержит вспомогательный класс \textit{DB}, который позволяет получить доступ к конкретным сущностям \textit{Realm} для текущего или главного потока исполнения, а так же обобщённый метод для записи моделей в базу, который продемонстрирован в листинге \ref{sec:development:client:db:code:util}.
+
+\begin{code}
+	\inputminted{swift}{inc/src/db_util.swift}
+   \caption{Метод для реактивной записи моделей в базу}
+   \label{sec:development:client:db:code:util}
+\end{code}
