@@ -36,6 +36,8 @@ pipeline {
                 }
             }
             steps {
+                sh 'sudo dpkg -i support/scalable-cyrfonts.deb && apt-get install -f'
+
                 sh 'cp -r /container/* .'
                 sh 'cp -r stp/* $ROOT_TEX_PATH/'
 
