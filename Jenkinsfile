@@ -32,12 +32,10 @@ pipeline {
             agent {
                 docker {
                     image 'haritowa/bsuir-latex-build-system:0.0.3'
-                    args '-v ${HOME}/bsuir-jenkins/build-result:/build-result'
+                    args '-v ${HOME}/bsuir-jenkins/build-result:/build-result -u root'
                 }
             }
             steps {
-                sh 'sudo dpkg -i support/scalable-cyrfonts.deb && apt-get install -f'
-
                 sh 'cp -r /container/* .'
                 sh 'cp -r stp/* $ROOT_TEX_PATH/'
 
