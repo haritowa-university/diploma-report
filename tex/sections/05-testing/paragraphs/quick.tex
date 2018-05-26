@@ -15,7 +15,7 @@
 
 \subsubsection{}
 \label{sec:testing:tech:quick}
-\textit{Quick} -- фреймворк для разработки тестов по методологии "движемой поведением разработки" для языков Swift и Objective-C, вдохновлённый RSpec, Specta и Ginkgo. \cite{github:quick}
+\textit{Quick} -- фреймворк для разработки тестов по методологии "движемой поведением разработки" для языков Swift и Objective-C, вдохновлённый RSpec, Specta и Ginkgo\cite{github:quick}.
 
 Для решения описанных в пункте \ref{sec:testing:tech:xctest} проблем в проекте используется тестовый фреймворк \textit{Quick} и прилагающийся к нему набор методов верификации \textit{Nimble}.
 
@@ -43,17 +43,3 @@
 	\item Передача мокового объекта в тестируемый класс.
 	\item Вызов методов верификации на моковом объекте. Обычно это сводится к инструкциям вида "данный метод должен быть вызван с определёнными параметрами определённое количество раз".
 \end{enumerate}
-
-\subsubsection{}
-\label{sec:testing:tech:result}
-Таким образом, полный набор библиотек, использующихся для тестирования ПП, выглядит следующим образом:
-
-\begin{itemize}
-	\item \textit{RxTest};
-	\item \textit{RxBlocking};
-	\item \textit{XCTest} для тестов производительности;
-	\item \textit{Quick};
-	\item \textit{Nimble};
-	\item \textit{Cuckoo};
-	\item \textit{FoundationTesting} -- набор собственных расширений и утилит.
-\end{itemize}

@@ -42,13 +42,28 @@ pipeline {
                 sh './latex-project-builder -r ${ROOT_TEX_PATH} -s ${SECTIONS_PATH} -p ${PREAMBLE_CUSTOMIZATION_FILE} -b ${BIBLIOGRAPHY_DB} -i ${ADDITIONAL_INPUTS}'
 
                 // Stupid jenkins bug with dir inside docker container
-                sh 'cd $ROOT_TEX_PATH && $PDFLATEX $MAINTEX'
+                script {
+                    try {
+                        sh 'cd $ROOT_TEX_PATH && $PDFLATEX $MAINTEX'
+                    }
+                    catch(err) {
+                        
+                    }
+                }
 
                 sh 'cd $ROOT_TEX_PATH && makeglossaries $MAINTEX'
                 sh 'cd $ROOT_TEX_PATH && bibtex $MAINTEX'
 
-                sh '''cd $ROOT_TEX_PATH && $PDFLATEX $MAINTEX > /dev/null
+                script {
+                    try {
+                        sh '''cd $ROOT_TEX_PATH && $PDFLATEX $MAINTEX > /dev/null
                     $PDFLATEX $MAINTEX'''
+                    }
+                    catch(err) {
+                        
+                    }
+                }
+
 
                 sh 'cp $ROOT_TEX_PATH/$MAINTEX.pdf /build-result/$RESULT_PDF_NAME'
             }

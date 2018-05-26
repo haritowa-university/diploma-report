@@ -14,3 +14,16 @@
 
 \renewcommand{\glstextformat}[1]{\textit{#1}} % make any mentioed gls italic
 \renewcommand{\glossarysection}[2][]{} % Remove glossary from TOC
+
+\captionsetup[code]{
+  margin=\fivecharsapprox
+}
+
+\makeatletter
+\renewcommand\subsubsection{
+  \@startsection{subsubsection}{3}%
+    {\fivecharsapprox\bfseries}%
+    {0em \@plus -1ex \@minus -.2ex}%
+    {\z@}%
+    {\raggedright\hyphenpenalty=10000\normalfont\normalsize}}
+\makeatother

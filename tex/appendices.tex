@@ -1,7 +1,4 @@
 \newpage
-\includepdf[pages=-,pagecommand={}]{inc/pdf/vedomost.pdf}
-
-\newpage
 
 \newcommand{\pra}{
 \begin{center}
@@ -19,11 +16,15 @@
 \pagestyle{fancy}
 
 
-
 \begin{center}
 \textbf{
 \MakeUppercase{Приложение Б}\\
 (обязательное)\\
-Графическая часть}
+Ведомость}
 \end{center}
-\addcontentsline{toc}{section}{Приложение Б. Графическая часть}
+\addcontentsline{toc}{section}{Приложение Б. Ведомость}
+
+\pagestyle{empty}
+\newpage
+\includepdf[pages=-,pagecommand={}]{inc/pdf/vedomost.pdf}
+\pagestyle{fancy}
