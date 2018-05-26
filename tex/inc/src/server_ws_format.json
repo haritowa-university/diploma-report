@@ -1,0 +1,4 @@
+{
+    "type": “success | error | event",
+    "data": { ... }
+}
