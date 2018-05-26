@@ -41,3 +41,8 @@
   basicstyle=\fontencoding{T1}\ttfamily,
   columns=fullflexible
 }
+
+\makeatletter
+\let\oldPYGdefault\PYGdefault
+\def\PYGdefault#1#2{\hbox{\oldPYGdefault{#1}{#2}}\allowbreak{}}
+\makeatother
