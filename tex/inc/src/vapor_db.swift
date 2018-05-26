@@ -2,7 +2,7 @@ final class User: Model {
     typealias Database = FooDatabase
     typealias ID = Int
 
-    static let idKey: IDKey = \.id
+    static let idKey: IDKey = .id
     var id: Int?
     var name: String
     var age: Int
