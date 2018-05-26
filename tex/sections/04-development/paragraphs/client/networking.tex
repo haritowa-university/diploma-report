@@ -1,0 +1,47 @@
+\subsubsection{}
+\label{sec:development:client:networking}
+
+Сетевой слой состоит из набора моделей запросов и ответов, описания \gls{http} \gls{api}, методы для отправки запросов, \gls{ws} клиент.
+
+Для парсинга JSON используется библиотека \textit{ObjectMapper}, которая позволяет при помощи операторов выразительным образом описать процесс сериализации и десереализации модели во многие форматы.
+В листинге \ref{sec:development:client:networking:code:deserialize} продемонстрировано описание десериализации модели пользователя и списка пользователей, а в листинге \ref{sec:development:client:networking:code:serialize} -- сериализация события отпраки сообщения.
+
+\begin{code}
+	\inputminted{swift}{inc/src/deserealization.swift}
+   \caption{Десериализация модели пользователя и списка контактов}
+   \label{sec:development:client:networking:code:deserialize}
+\end{code}
+
+\begin{code}
+	\inputminted{swift}{inc/src/serialization.swift}
+   \caption{Сериализация модели события отпраки сообщения}
+   \label{sec:development:client:networking:code:serialize}
+\end{code}
+
+Как уже отмечалось в пункте \ref{sec:development:arch:pp:communication}, всё общение клиента с сервером происходит по определённому формату, для упрощения процесса сериализации, этот формат инкапсулирован в обобщённый тип \texttt{ResponseContainer}, который продемонстрирован в листинге \ref{sec:development:client:networking:code:deserialize:container}.
+
+\begin{code}
+	\inputminted{swift}{inc/src/parsing_contaier.swift}
+   \caption{Контейнер для десериализации данных}
+   \label{sec:development:client:networking:code:deserialize:container}
+\end{code}
+
+Тип \textit{ChattySocket} отвечает за взаимодействие с сервером при помощи \gls{ws}. В качестве имплементации общения по протоколу \gls{ws} используется библиотека \textit{Starscream}, тип \textit{ChattySocket} является реактивной обёрткой, который добавляет поддержку авторизации, отправки запросов с использованием моделей приложения, аггрегацию ошибок и мониторинг состояния сети.
+
+Для описания \gls{http} \gls{api} приложения используется библиотека \textit{Moya} и конкретное описание \gls{api}: \textit{ChattyAPI}. Основными задачами типа являются:
+\begin{enumerate}
+	\item Описание всех эндпойнтов приложения.
+	\begin{enumerate}
+		\item Описание пути запроса.
+		\item Описание типа запроса (\textit{GET}, \textit{POST} и так далее).
+		\item Ответы-заглушки на каждый запрос.
+		\item Способ сериализации параметров запроса.
+		\item Список параметров запроса.
+		\item Способ отправки запроса, необходимый для работы \textit{NSUrlSession}.
+	\end{enumerate}
+	\item Базовый путь к \gls{api} приложения.
+	\item Добавление ко всем запросам необходимых заголовков, в том числе авторизации.
+	\item Общая обработка ошибок сети, сервера и запросов.
+\end{enumerate}
+
+Благодаря предоставлению ответов-заглушек, стало возможным использование \textit{MockMoyaProvider}, который используется в тестах для иммитации отправки запросов и получения ответов.
