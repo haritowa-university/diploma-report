@@ -1,4 +1,4 @@
 {
-    "type": “success | error | event",
-    "data": { ... }
+    "type": "success | error | event",
+    "data": {  }
 }
