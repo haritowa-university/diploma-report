@@ -1,9 +1,3 @@
-import Foundation
-import RealmSwift
-
-import RxSwift
-import RxRealm
-
 class DeviceModel: Object {
     dynamic var id: String = ""
     dynamic var name: String = ""
@@ -16,125 +10,263 @@ class DeviceModel: Object {
     }
 }
 
-extension Realm { // Queries
-    func getDevices(for userID: String) -> Observable<List<DeviceModel>?> {
-        let realmQuery = DB.mainThreadRealm.objects(UserModel.self).filter("id = '\(userID)'")
+enum PresentType {
+    case push
+    case present(wrap: Bool)
+}
 
-        return Observable.array(from: realmQuery).map { (users: [UserModel]) -> List<DeviceModel>? in
-            guard let user = users.first else { return nil }
-            return user.devices
-        }
+protocol NavigationEndpoint: URLConvertible {
+    var storyboardName: String { get }
+    var screenIdentifier: String { get }
+    var presentationType: PresentType { get }
+
+    func setup(viewController: UIViewController) -> Bool
+
+    static var patterns: [String] { get }
+}
+
+extension NavigationEndpoint {
+    public var urlValue: URL? {
+        return URL(string: self.urlStringValue)
     }
 }
 
-import Foundation
-import RealmSwift
+extension URLNavigator {
+    func registerEndpoint(name: String) {
+        self.map(name) { (url, values) -> Bool in
+            guard let endpoint = url as? NavigationEndpoint else { return false }
 
-import RxSwift
-import RxRealm
+            let viewController = UIStoryboard(name: endpoint.storyboardName, bundle: Bundle.main)
+                    .instantiateViewController(withIdentifier: endpoint.screenIdentifier)
 
-class MessageModel: Object {
-    dynamic var id: String = ""
-    dynamic var createdDate: Date = Date()
+            guard endpoint.setup(viewController: viewController) else { return false }
 
-    dynamic var dialogue: UserModel? = nil
-    dynamic var sender: UserModel? = nil
+            switch endpoint.presentationType {
+            case .push: Navigator.push(viewController)
+            case .present(let wrap): Navigator.present(viewController, wrap: wrap)
+            }
 
-    dynamic var messageText: String = ""
-
-    @objc override class func primaryKey() -> String? {
-        return "id"
+            return true
+        }
     }
 
-    static func addCurrentUserMessage(with text: String, dialogue: UserModel) {
-        guard let currentUser = UserModel.current else { return }
+    func registerPatterns<T: NavigationEndpoint>(for endpointType: T.Type) {
+        T.patterns.forEach(registerEndpoint)
+    }
 
-        let model = MessageModel()
-        model.messageText = text
-        model.sender = currentUser
-        model.dialogue = dialogue
-        model.id = UUID().uuidString
-        model.createdDate = Date()
+    func present(endpoint: NavigationEndpoints) {
+        self.open(endpoint)
+    }
+}
 
-        let realm = DB.mainThreadRealm
-        _ = try? realm.write {
-            realm.add(model, update: true)
-            dialogue.latestMessage = model
+protocol Navigatable {
+    func performNavigation()
+}
+
+enum NavigationDescription: Navigatable {
+    case alert(title: String?, message: String?)
+    case errorPopup(Error)
+    case endpoint(NavigationEndpoints)
+    case dismiss
+    case popToRoot
+    
+    func performNavigation() { Navigation.present(from: self) }
+}
+
+struct NavigationChainDescription: Navigatable {
+    enum DismissDescription {
+        case current
+        case toRoot
+        case none
+    }
+    
+    let dismissStrategy: DismissDescription
+    let endpoint: NavigationEndpoints
+    
+    init(dismissDescription: DismissDescription = .current, endpoint: NavigationEndpoints) {
+        self.dismissStrategy = dismissDescription
+        self.endpoint = endpoint
+    }
+    
+    func performNavigation() { Navigation.present(from: self) }
+}
+
+struct Navigation {
+    static func present(endpoint: NavigationEndpoints) {
+        Navigator.open(endpoint)
+    }
+    
+    static let navigationObserver = AnyObserver<Navigatable> { (event) in
+        guard let value = event.element else { return }
+        DispatchQueue.main.async(execute: value.performNavigation)
+    }
+    
+    static func present(from chainDescription: NavigationChainDescription) {
+        let completion: () -> Void = { _ in Navigator.open(chainDescription.endpoint) }
+        switch chainDescription.dismissStrategy {
+        case .current: dismissCurrent(completion: completion)
+        case .toRoot: dismissToRoot(completion: completion)
+        case .none: completion()
         }
     }
     
-    static func addAnotherUserMessage(with text: String, dialogue: UserModel) {
-        let model = MessageModel()
-        model.messageText = text
-        model.sender = dialogue
-        model.dialogue = dialogue
-        model.id = UUID().uuidString
-        model.createdDate = Date()
-        
-        let realm = DB.mainThreadRealm
-        _ = try? realm.write {
-            realm.add(dialogue, update: true)
-            realm.add(model, update: true)
-            dialogue.latestMessage = model
+    static func present(from description: NavigationDescription) {
+        switch description {
+        case .endpoint(let endpoint): Navigator.open(endpoint)
+        case let .alert(title, message):
+            var rootPath = "/alert?"
+            if let title = title { rootPath += "title=\(title)" }
+            if let message = message { rootPath += "&message=\(message)" }
+            Navigator.open(rootPath)
+        case .errorPopup(let error):
+            present(from: .alert(title: "Error", message: "\(error)"))
+        case .dismiss: dismissCurrent()
+        case .popToRoot: dismissToRoot()
         }
     }
-
-    static func addCurrentUserMessageObservable(with text: String, dialogue: UserModel) -> Single<Void> {
-        return Single<Void>.create { observer in
-            MessageModel.addCurrentUserMessage(with: text, dialogue: dialogue)
-            observer(.success(()))
-            return Disposables.create()
-        }
-    }
-}
-
-import Foundation
-import RealmSwift
-
-import RxSwift
-import RxRealm
-
-class UserModel: Object {
-    dynamic var id: String = ""
-    dynamic var name: String = ""
-    let devices = List<DeviceModel>()
     
-    dynamic var latestMessage: MessageModel? = nil
-
-    let messages = LinkingObjects(fromType: MessageModel.self, property: "dialogue")
-
-    @objc override class func primaryKey() -> String? {
-        return "id"
-    }
-
-    static func dialogues() -> Observable<[UserModel]> {
-        let realmQuery = DB.mainThreadRealm.objects(UserModel.self)
-            .sorted(byKeyPath: "latestMessage.createdDate")
-            .filter("latestMessage != nil")
+    private static func dismissCurrent(completion: (() -> Void)? = nil) {
+        guard var targetViewController = UIApplication.shared.keyWindow?.rootViewController else { return }
         
-        return Observable.array(from: realmQuery)
+        while let presentedVC = targetViewController.presentedViewController {
+            targetViewController = presentedVC
+        }
+        
+        targetViewController.dismiss(animated: true, completion: completion)
+    }
+    
+    private static func dismissToRoot(completion: (() -> Void)? = nil) {
+        guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else { return }
+
+        if let navigationController = rootViewController as? UINavigationController {
+            navigationController.popToRootViewController(animated: true)
+            completion?()
+        }
+
+        rootViewController.dismiss(animated: true, completion: completion)
     }
 
-    static var current: UserModel? {
-        guard let userID = Session.shared.userID else { return nil }
-        return DB.mainThreadRealm.object(ofType: UserModel.self, forPrimaryKey: userID)
+    static func registerEndpoints() {
+        Navigator.registerPatterns(for: NavigationEndpoints.self)
     }
 }
 
-extension UserModel {
-    convenience init(from response: UserResponse, devices: [DeviceModel] = []) {
-        self.init()
+enum NavigationEndpoints: NavigationEndpoint {
+    case signUp(userCryptIdentityInfo: UserCryptIdentityInfo)
+    case pinCode
+
+    case setIP
+    case fetchData
+
+    case home
+    
+    case dialogue(UserModel)
+
+    var storyboardName: String {
+        switch self {
+        case .signUp, .pinCode: return "Authorization"
+        case .fetchData, .setIP: return "Main"
+        case .home: return "TabBar"
+        case .dialogue: return "Dialogue"
+        }
+    }
+
+    var screenIdentifier: String {
+        switch self {
+        case .signUp: return "authorization"
+        case .pinCode: return "pinCode"
+        case .fetchData: return "fetchData"
+        case .home: return "root"
+        case .dialogue: return "dialogue"
+        case .setIP: return "setip"
+        }
+    }
+    
+    var urlStringValue: String {
+        switch self {
+        case .signUp: return "chatty://signup"
+        case .pinCode: return "chatty://pincode"
+        case .fetchData: return "chatty://fetchdata"
+        case .home: return "chatty://home"
+        case .dialogue: return "chatty://dialogue"
+        case .setIP: return "chatty://setIP"
+        }
+    }
+
+    static var patterns: [String] = [
+        "chatty://signup",
+        "chatty://pincode",
+        "chatty://fetchdata",
+        "chatty://home",
+        "chatty://dialogue",
+        "chatty://setIP"
+    ]
+
+    var presentationType: PresentType {
+        switch self {
+        case .home: return .present(wrap: true)
+        case .pinCode, .signUp, .setIP: return .present(wrap: false)
+        case .fetchData, .dialogue: return .push
+        }
+    }
+
+    func setup(viewController: UIViewController) -> Bool {
+        switch self {
+        case .signUp(let userCryptIdentityInfo):
+            return NavigationEndpoints.setupSignUp(viewController: viewController, userCryptIdentityInfo: userCryptIdentityInfo)
+        case .pinCode:
+            return NavigationEndpoints.setupPinCode(viewController: viewController)
+        case .fetchData:
+            return NavigationEndpoints.setupFetchData(viewController: viewController)
+        case .home: return true
+        case .dialogue(let dialogue):
+            return NavigationEndpoints.setupDialogue(viewController: viewController, dialogue: dialogue)
+        case .setIP:
+            return NavigationEndpoints.setupSetIP(viewController: viewController)
+        }
+    }
+
+    private static func setupSetIP(viewController: UIViewController) -> Bool {
+        guard let fetchViewController = viewController as? SetIPViewController else { return false }
+        let viewModel = SetIPViewModel()
+        fetchViewController.inject(viewModel: viewModel)
+
+        return true
+    }
+
+    private static func setupFetchData(viewController: UIViewController) -> Bool {
+        guard let fetchViewController = viewController as? UpdateDataViewController else { return false }
+        let viewModel = UpdateDataViewModel()
+        fetchViewController.inject(viewModel: viewModel)
+
+        return true
+    }
+
+    private static func setupPinCode(viewController: UIViewController) -> Bool {
+        guard let pinCodeViewController = viewController as? PinCodeViewController else { return false }
+        let viewModel = PinCodeViewModel()
+        pinCodeViewController.inject(viewModel: viewModel)
+
+        return true
+    }
+    
+    private static func setupDialogue(viewController: UIViewController, dialogue: UserModel) -> Bool {
+        guard let pinCodeViewController = viewController as? ChatViewController else { return false }
+        let viewModel = ChatViewModel(dialogue: dialogue)
+        pinCodeViewController.inject(viewModel: viewModel)
         
-        self.id = response.id
-        self.name = response.name
-        self.devices.append(objectsIn: devices)
+        return true
+    }
+
+    private static func setupSignUp(viewController: UIViewController, userCryptIdentityInfo: UserCryptIdentityInfo) -> Bool {
+        guard let signUpViewController = viewController as? SignInViewController else { return false }
+
+        let signInViewModel = SignInViewModel(signingIdentity: userCryptIdentityInfo)
+        signUpViewController.inject(viewModel: signInViewModel)
+        
+        return true
     }
 }
-
-import Foundation
-import RealmSwift
-import RxSwift
-import RxRealm
 
 
 struct DB {
@@ -165,11 +297,6 @@ struct DB {
         }
     }
 }
-
-import Foundation
-import SwCrypt
-
-import KeychainAccess
 
 typealias AESKey = Data
 typealias RSAPrivateKey = Data
@@ -443,46 +570,4 @@ extension Crypt {
             )
         }
     }
-}
-
-import Foundation
-
-struct UserCryptIdentity {
-    enum IdentityKey {
-        case aes
-        case iv
-        case pinIV
-        case rsaPublic
-        case rsaPrivate
-
-        case testData
-
-        var identityKey: String {
-            switch self {
-            case .aes: return Crypt.Constants.Keychain.aesKey
-            case .pinIV: return Crypt.Constants.Keychain.pinIV
-            case .iv: return Crypt.Constants.Keychain.iv
-            case .rsaPublic: return Crypt.Constants.Keychain.publicKey
-            case .rsaPrivate: return Crypt.Constants.Keychain.privateKey
-            case .testData: return Crypt.Constants.Keychain.testData
-            }
-        }
-
-        static let all: [IdentityKey] = [
-                IdentityKey.aes,
-                IdentityKey.pinIV,
-                IdentityKey.iv,
-                IdentityKey.rsaPublic,
-                IdentityKey.rsaPrivate,
-                IdentityKey.testData
-        ]
-    }
-
-    let privateKey: RSAPrivateKey
-    let publicKey: RSAPublicKey
-
-    let publicKeyPEM: String
-
-    let localAESKey: AESKey
-    let localAESIV: Data
 }
