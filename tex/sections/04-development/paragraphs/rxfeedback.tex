@@ -10,7 +10,7 @@ Github возвращает результат поиска в виде спис
 Одним из нескольких элементов архитектуры является состояние. Во время разработки стало очевидно, что состояние должно хранить в себе всю информацию (как данные, так и утилитарную), поэтому состояние поиска можно представить в виде листинга \ref{sec:development:arch:ios:rxfeedback:example:state}.
 
 \begin{code}
-  \inputminted{swift}{inc/src/rx-feedback-state.swift}
+  \lstinputlisting{inc/src/rx-feedback-state.swift}
    \caption{Пример состояния паттерна RxFeedback}
    \label{sec:development:arch:ios:rxfeedback:example:state}
 \end{code}
@@ -26,7 +26,7 @@ Github возвращает результат поиска в виде спис
 Часто результаты операций упаковываются в тип Result, позволяя группировать входящие сообщения и типизировать ошибку, однако для простых примеров бывает удобнее разнести успешный результат выполнения операции и ошибку на два разных события. В листинге \ref{sec:development:arch:ios:rxfeedback:example:event} представлен пример описания входящих событий. Чаще всего они описываются в виде перечисления.
 
 \begin{code}
-  \inputminted{swift}{inc/src/rx-feedback-event.swift}
+  \lstinputlisting{inc/src/rx-feedback-event.swift}
    \caption{Пример события паттерна RxFeedback}
    \label{sec:development:arch:ios:rxfeedback:example:event}
 \end{code}
@@ -34,7 +34,7 @@ Github возвращает результат поиска в виде спис
 Следующей компонентой является тип, чья обязанность объяснить системе как изменять состояние для каждого конкретного события. Обычно это тип, который имеет метод \texttt{func create(input: Input) -> (State) -> State}, принимающий событие и возвращающий метод, каким-то образом модифицирующий состояние. Такой подход позволяет создать много небольших чистых функций, которые принимают состояние, определённым образом его меняют и возвращают результат. Часто для модификации состояния используются линзы, позволяя сделать тип состояния полностью неизменяемым, но они не являются обязательными для имплементации паттерна, поэтому я не буду их использовать в примерах. В листинге \ref{sec:development:arch:ios:rxfeedback:example:mutator} приведён пример обработки одного события. Оператор \(>>>\) является композицией функций, метод resetLoopVariables необходим для поддержания консистентного состояния между вызовами (очищает переменные, которые используются для одноразовой передачи данных).
 
 \begin{code}
-  \inputminted{swift}{inc/src/rx-feedback-state-mutator.swift}
+  \lstinputlisting{inc/src/rx-feedback-state-mutator.swift}
    \caption{Пример события паттерна RxFeedback}
    \label{sec:development:arch:ios:rxfeedback:example:mutator}
 \end{code}
@@ -42,7 +42,7 @@ Github возвращает результат поиска в виде спис
 Имея данный набор компонент уже можно собрать систему, однако для её корректной работы необходимы сущности, выполняющие работу по запросу из состояния. Обычно такие сущности внедряются при помощи \gls{di} в тип RxFeedback, в нашем случае необходима сущность, способная отправлять запросы в \gls{api} GitHub по требованию, представленная в листинге \ref{sec:development:arch:ios:rxfeedback:example:worker}. В листинге тип возвращает \texttt{Observable<Event>}, но обычно возвращается \texttt{Observable<Result<Event, Error> >}.
 
 \begin{code}
-  \inputminted{swift}{inc/src/rx-feedback-worker.swift}
+  \lstinputlisting{inc/src/rx-feedback-worker.swift}
    \caption{Пример Worker паттерна RxFeedback}
    \label{sec:development:arch:ios:rxfeedback:example:worker}
 \end{code}
@@ -62,13 +62,13 @@ Github возвращает результат поиска в виде спис
 В листинге \ref{sec:development:arch:ios:rxfeedback:example:initial-state} представлена функция для генерации начального состояния системы, а в листинге \ref{sec:development:arch:ios:rxfeedback:example:composition} все компоненты связываются в единый поток.
 
 \begin{code}
-  \inputminted{swift}{inc/src/rx-feedback-initial-state.swift}
+  \lstinputlisting{inc/src/rx-feedback-initial-state.swift}
    \caption{Начальное состояние для паттерна RxFeedback}
    \label{sec:development:arch:ios:rxfeedback:example:initial-state}
 \end{code}
 
 \begin{code}
-  \inputminted{swift}{inc/src/rx-feedback-composition.swift}
+  \lstinputlisting{inc/src/rx-feedback-composition.swift}
    \caption{Организация потока паттерна RxFeedback}
    \label{sec:development:arch:ios:rxfeedback:example:composition}
 \end{code}

@@ -6,7 +6,7 @@
 Все данные передаются в формате \textit{JSON}, формат запроса через \textit{REST} зависит от конкретного запроса, для событий, отправляемых клиентом через \gls{ws} был принят формат, отражённый в листинге \ref{sec:development:arch:pp:communication:code:ws:request}, где поле \texttt{type} принимает строковое значение, которое равно одному из названий возможных событий (отправка сообщения, подтверждение получения события и так далее).
 
 \begin{code}
-	\inputminted{json}{inc/src/client_ws_req_format.json}
+	\lstinputlisting{inc/src/client_ws_req_format.json}
    \caption{Шаблон клиентских запросов через WebSocket}
    \label{sec:development:arch:pp:communication:code:ws:request}
 \end{code}
@@ -20,7 +20,7 @@
 \end{enumerate}
 
 \begin{code}
-	\inputminted{json}{inc/src/server_ws_format.json}
+	\lstinputlisting{inc/src/server_ws_format.json}
    \caption{Шаблон серверных событий, отправленных через WebSocket}
    \label{sec:development:arch:pp:communication:code:ws:response}
 \end{code}

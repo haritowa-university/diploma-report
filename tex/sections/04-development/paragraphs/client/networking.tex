@@ -7,13 +7,13 @@
 В листинге \ref{sec:development:client:networking:code:deserialize} продемонстрировано описание десериализации модели пользователя и списка пользователей, а в листинге \ref{sec:development:client:networking:code:serialize} -- сериализация события отпраки сообщения.
 
 \begin{code}
-	\inputminted{swift}{inc/src/deserialization.swift}
+	\lstinputlisting{inc/src/deserialization.swift}
    \caption{Десериализация модели пользователя и списка контактов}
    \label{sec:development:client:networking:code:deserialize}
 \end{code}
 
 \begin{code}
-	\inputminted{swift}{inc/src/serialization.swift}
+	\lstinputlisting{inc/src/serialization.swift}
    \caption{Сериализация модели события отпраки сообщения}
    \label{sec:development:client:networking:code:serialize}
 \end{code}
@@ -21,7 +21,7 @@
 Как уже отмечалось в пункте \ref{sec:development:arch:pp:communication}, всё общение клиента с сервером происходит по определённому формату, для упрощения процесса сериализации, этот формат инкапсулирован в обобщённый тип \texttt{ResponseContainer}, который продемонстрирован в листинге \ref{sec:development:client:networking:code:deserialize:container}.
 
 \begin{code}
-	\inputminted{swift}{inc/src/parsing_container.swift}
+	\lstinputlisting{inc/src/parsing_container.swift}
    \caption{Контейнер для десериализации данных}
    \label{sec:development:client:networking:code:deserialize:container}
 \end{code}
