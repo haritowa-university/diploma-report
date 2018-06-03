@@ -1,0 +1,17 @@
+\subsubsection{} Генерация \textit{RSA} ключей.
+\label{sec:eng:performance:rsakeygen}
+
+Метод \texttt{generateRSAKeyPair} необходим для генерации пары \textit{RSA} ключей (публичного и приватного). В листинге \ref{sec:eng:performance:rsakeygen:code} приведён код для тестирования метода генерации пары \textit{RSA} ключей, а на рисунке \ref{sec:eng:performance:rsakeygen:result} результаты измерений.
+
+\begin{code}
+  \lstinputlisting{inc/src/perf/rsakeygen.swift}
+   \caption{Тестовый метод для метода генерации пары RSA ключей}
+   \label{sec:eng:performance:rsakeygen:code}
+\end{code}
+
+\begin{figure}[h]
+  \centering
+    \includegraphics{inc/img/perf_rsakeygen.png}
+  \caption{Результаты замера производительности метода генерации RSA ключей}
+  \label{sec:eng:performance:rsakeygen:result}
+\end{figure}
