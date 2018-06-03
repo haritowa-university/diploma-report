@@ -5,7 +5,10 @@ func getDevices(for userID: String)
 	    .filter("id = '\(userID)'")
 
     return Observable.array(from: realmQuery).map {
-        guard let user = users.first else { return nil }
+        guard let user = users.first else {
+            return nil 
+        }
+        
         return user.devices
     }
 }
