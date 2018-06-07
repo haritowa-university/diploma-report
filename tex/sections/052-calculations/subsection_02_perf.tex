@@ -66,35 +66,60 @@
 \input{sections/052-calculations/paragraphs/rsaenc}
 \input{sections/052-calculations/paragraphs/aesenc}
 
-В таблице \ref{sec:eng:performance:aesenc:result} приведены данные по всем измерениям. Важно отметить, что некоторые методы используются чаще остальных, поэтому разница между значениями может невилироваться частотой использования, например, генерация пары \textit{RSA} ключей выполняется только при первой авторизации в клиенте, в то время как генерация \textit{AES} ключа происходит при отправке каждого сообщения. Это же касается расшифровки сообщения: \textit{RSA} дешифрование применяется только при получении сообщения на фоновом потоке, а дальнейшее отображение (которое может повторяться столько раз, сколько сообщение будет попадать на экран) использует \textit{AES} дешифрование на главном потоке.
+В таблице \ref{sec:eng:performance:aesenc:result} приведены данные по результатам всех измерений, а в таблице \ref{sec:eng:performance:aesenc:resultDev} -- результаты соотвтествующих вычислений отклонения измерений от максимально допустимой производительности. Важно отметить, что некоторые методы используются чаще остальных, поэтому разница между значениями может невилироваться частотой использования, например, генерация пары \textit{RSA} ключей выполняется только при первой авторизации в клиенте, в то время как генерация \textit{AES} ключа происходит при отправке каждого сообщения. Это же касается расшифровки сообщения: \textit{RSA} дешифрование применяется только при получении сообщения на фоновом потоке, а дальнейшее отображение (которое может повторяться столько раз, сколько сообщение будет попадать на экран) использует \textit{AES} дешифрование на главном потоке.
 
 \begin{table}[!ht]
   \caption{Результаты расчетов производительности модуля криптографии iOS-клиента}
   \label{sec:eng:performance:aesenc:result}
   \centering
   \begin{tabularx}{\linewidth}{
-    |>{\hsize=1.5\hsize}X|
-    >{\centering\arraybackslash\hsize=0.95\hsize}X|
-    >{\centering\arraybackslash\hsize=0.95\hsize}X|
-    >{\centering\arraybackslash\hsize=0.95\hsize}X|
-    >{\centering\arraybackslash\hsize=0.25\hsize}X|
+    |>{\hsize=1.6\hsize}X|
+    >{\centering\arraybackslash\hsize=0.8\hsize}X|
+    >{\centering\arraybackslash\hsize=0.8\hsize}X|
+    >{\centering\arraybackslash\hsize=0.8\hsize}X|
   }
 	\hline
- \begin{center}Название метода\end{center} & Максимальное значение &  Минимальное значение & Среднее значение & Отклонение \\
+ \begin{center}Название метода\end{center} & Максимальное значение &  Минимальное значение &  Среднее значение \\
  \hline
- rsaKeyGeneration & \num{\rsaKeyGenMesaureMax} & \num{\rsaKeyGenMesaureMin} & \num{\rsaKeyGenMesaureAverage} & \num{\perfDevRSAKeyGen} \\
+ rsaKeyGeneration & \num{\rsaKeyGenMesaureMax} & \num{\rsaKeyGenMesaureMin} & \num{\rsaKeyGenMesaureAverage} \\
  \hline
- aesKeyGeneration & \num{\aesKeyGenMesaureMax} & \num{\aesKeyGenMesaureMin} & \num{\aesKeyGenMesaureAverage} & \num{\perfDevAESKeyGen} \\
+ aesKeyGeneration & \num{\aesKeyGenMesaureMax} & \num{\aesKeyGenMesaureMin} & \num{\aesKeyGenMesaureAverage} \\
  \hline
- aesEncrypt & \num{\aesEncMesaureMax} & \num{\aesEncMesaureMin} & \num{\aesEncMesaureAverage} & \num{\perfAESEnc} \\
+ aesEncrypt & \num{\aesEncMesaureMax} & \num{\aesEncMesaureMin} & \num{\aesEncMesaureAverage} \\
  \hline
- aesDecrypt & \num{\aesDecMesaureMax} & \num{\aesDecMesaureMin} & \num{\aesDecMesaureAverage} & \num{\perfAESDec} \\
+ aesDecrypt & \num{\aesDecMesaureMax} & \num{\aesDecMesaureMin} & \num{\aesDecMesaureAverage} \\
  \hline
- rsaEncrypt & \num{\rsaEncMesaureMax} & \num{\rsaEncMesaureMin} & \num{\rsaEncMesaureAverage} & \num{\perfRSAEnc} \\
+ rsaEncrypt & \num{\rsaEncMesaureMax} & \num{\rsaEncMesaureMin} & \num{\rsaEncMesaureAverage} \\
  \hline
- rsaDecrypt & \num{\rsaDecMesaureMax} & \num{\rsaDecMesaureMin} & \num{\rsaDecMesaureAverage} & \num{\perfRSADec} \\
+ rsaDecrypt & \num{\rsaDecMesaureMax} & \num{\rsaDecMesaureMin} & \num{\rsaDecMesaureAverage} \\
  \hline
-\end{tabularx}
+  \end{tabularx}
+\end{table}
+
+\begin{table}[!ht]
+  \caption{Результаты отклонения метрик производительности от предельно допустимых}
+  \label{sec:eng:performance:aesenc:resultDev}
+  \centering
+  \begin{tabularx}{\linewidth}{
+    |>{\hsize=1.4\hsize}X|
+    >{\centering\arraybackslash\hsize=0.6\hsize}X|
+  }
+  \hline
+ \begin{center}Название метода\end{center} & Отклонение \% \\
+ \hline
+ rsaKeyGeneration & \num{\perfDevRSAKeyGen} \\
+ \hline
+ aesKeyGeneration & \num{\perfDevAESKeyGen} \\
+ \hline
+ aesEncrypt & \num{\perfAESEnc} \\
+ \hline
+ aesDecrypt & \num{\perfAESDec} \\
+ \hline
+ rsaEncrypt & \num{\perfRSAEnc} \\
+ \hline
+ rsaDecrypt & \num{\perfRSADec} \\
+ \hline
+  \end{tabularx}
 \end{table}
 
 Как видно по результатам тестов, методы, связанные с \textit{RSA} шифрованием, работают значительно медленнее аналогичных, использующих \textit{AES}. Данное поведение является ожидаемым, именно поэтому при шифровании сообщения, генерируется \textit{AES} ключ, который шифруется для каждого получателя, а само сообщение шифруется \textit{AES} ключом.
