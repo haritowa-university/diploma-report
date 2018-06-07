@@ -68,39 +68,31 @@
 
 В таблице \ref{sec:eng:performance:aesenc:result} приведены данные по всем измерениям. Важно отметить, что некоторые методы используются чаще остальных, поэтому разница между значениями может невилироваться частотой использования, например, генерация пары \textit{RSA} ключей выполняется только при первой авторизации в клиенте, в то время как генерация \textit{AES} ключа происходит при отправке каждого сообщения. Это же касается расшифровки сообщения: \textit{RSA} дешифрование применяется только при получении сообщения на фоновом потоке, а дальнейшее отображение (которое может повторяться столько раз, сколько сообщение будет попадать на экран) использует \textit{AES} дешифрование на главном потоке.
 
-% \perfAESEnc
-% \perfAESDec
-
-% \perfRSAEnc
-% \perfRSADec
-
-% \perfDevRSAKeyGen
-% \perfDevAESKeyGen
-
 \begin{table}[!ht]
   \caption{Результаты расчетов производительности модуля криптографии iOS-клиента}
   \label{sec:eng:performance:aesenc:result}
   \centering
   \begin{tabularx}{\linewidth}{
-    |>{\hsize=1.6\hsize}X|
-    >{\centering\arraybackslash\hsize=0.8\hsize}X|
-    >{\centering\arraybackslash\hsize=0.8\hsize}X|
-    >{\centering\arraybackslash\hsize=0.8\hsize}X|
+    |>{\hsize=1.85\hsize}X|
+    >{\centering\arraybackslash\hsize=1.05\hsize}X|
+    >{\centering\arraybackslash\hsize=1.05\hsize}X|
+    >{\centering\arraybackslash\hsize=1.05\hsize}X|
+    >{\centering\arraybackslash\hsize=0.25\hsize}X|
   }
 	\hline
- \begin{center}Название метода\end{center} & Максимальное значение &  Минимальное значение &  Среднее значение & Отклонение \\
+ \begin{center}Название метода\end{center} & Максимальное значение &  Минимальное значение & Среднее значение & Отклонение \\
  \hline
- rsaKeyGeneration & \num{\rsaKeyGenMesaureMax} & \num{\rsaKeyGenMesaureMin} & \num{\rsaKeyGenMesaureAverage} \\
+ rsaKeyGeneration & \num{\rsaKeyGenMesaureMax} & \num{\rsaKeyGenMesaureMin} & \num{\rsaKeyGenMesaureAverage} & \num{\perfDevRSAKeyGen} \\
  \hline
- aesKeyGeneration & \num{\aesKeyGenMesaureMax} & \num{\aesKeyGenMesaureMin} & \num{\aesKeyGenMesaureAverage} \\
+ aesKeyGeneration & \num{\aesKeyGenMesaureMax} & \num{\aesKeyGenMesaureMin} & \num{\aesKeyGenMesaureAverage} & \num{\perfDevAESKeyGen} \\
  \hline
- aesEncrypt & \num{\aesEncMesaureMax} & \num{\aesEncMesaureMin} & \num{\aesEncMesaureAverage} \\
+ aesEncrypt & \num{\aesEncMesaureMax} & \num{\aesEncMesaureMin} & \num{\aesEncMesaureAverage} & \num{\perfAESEnc} \\
  \hline
- aesDecrypt & \num{\aesDecMesaureMax} & \num{\aesDecMesaureMin} & \num{\aesDecMesaureAverage} \\
+ aesDecrypt & \num{\aesDecMesaureMax} & \num{\aesDecMesaureMin} & \num{\aesDecMesaureAverage} & \num{\perfAESDec} \\
  \hline
- rsaEncrypt & \num{\rsaEncMesaureMax} & \num{\rsaEncMesaureMin} & \num{\rsaEncMesaureAverage} \\
+ rsaEncrypt & \num{\rsaEncMesaureMax} & \num{\rsaEncMesaureMin} & \num{\rsaEncMesaureAverage} & \num{\perfRSAEnc} \\
  \hline
- rsaDecrypt & \num{\rsaDecMesaureMax} & \num{\rsaDecMesaureMin} & \num{\rsaDecMesaureAverage} \\
+ rsaDecrypt & \num{\rsaDecMesaureMax} & \num{\rsaDecMesaureMin} & \num{\rsaDecMesaureAverage} & \num{\perfRSADec} \\
  \hline
 \end{tabularx}
 \end{table}
