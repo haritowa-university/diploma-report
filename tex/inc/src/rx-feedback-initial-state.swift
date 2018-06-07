@@ -1,3 +1,6 @@
+import Foundation
+import Chatt
+
 extension SearchState {
     static func initial(for query: String) -> SearchState {
         return SearchState(
