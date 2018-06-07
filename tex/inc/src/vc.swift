@@ -1,6 +1,5 @@
 public protocol ViewModelInjectable {
     associatedtype AssociatedViewModel: LazyViewModel
-    
     func setup(with viewModel: AssociatedViewModel)
     func generateInput() -> AssociatedViewModel.InitInput
 }
@@ -18,13 +17,8 @@ extension ViewModelInjectable where Self: UIViewController {
             setup(using: viewModel)
             return
         }
-        
-        let rxSelf = self as UIViewController
-        
         return rxSelf.rx.sentMessage(#selector(UIViewController.viewDidLoad))
             .map { _ in viewModel }
-            .subscribe(onNext: { [unowned self] (_) in
-                self.setup(using: viewModel)
-            })
+            .subscribe { [unowned self] _ in self.setup(using: viewModel) }
     }
 }
