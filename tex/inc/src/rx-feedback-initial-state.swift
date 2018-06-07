@@ -1,5 +1,5 @@
 import Foundation
-import Chatt
+import RxSwift
 
 extension SearchState {
     static func initial(for query: String) -> SearchState {
