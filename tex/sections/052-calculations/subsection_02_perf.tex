@@ -9,9 +9,62 @@
 	\item делегирует \textit{XCTest} запуск тестового кода 10 раз с замером потраченного времени на каждую попытку.
 \end{itemize}
 
+К программному средству выставлено требование высокой отзывчивости, которые, в том числе, выражаются в требованиях к производительноси методов шифрования, которые представлены в таблице \ref{sec:eng:performance:aesenc:expected}.
+
+
+\FPEval{\rsaKeyGenerationMaxValue}{60}
+\FPEval{\aesKeyGenerationMaxValue}{0.001}
+\FPEval{\aesEncryptMaxValue}{0.001}
+\FPEval{\aesDecryptMaxValue}{0.002}
+\FPEval{\rsaEncryptMaxValue}{0.01}
+\FPEval{\rsaDecryptMaxValue}{0.5}
+
+\newcommand{\perfDev}{\text{П}_\text{о}}
+\newcommand{\perfLimit}{\text{П}_\text{пд}}
+\newcommand{\perfMax}{\text{П}_\text{макс}}
+\newcommand{\perfMin}{\text{П}_\text{мин}}
+\newcommand{\perfAverage}{\text{П}_\text{ср}}
+
+\begin{table}[!ht]
+  \caption{Требования к производительности модуля криптографии iOS-клиента}
+  \label{sec:eng:performance:aesenc:expected}
+  \centering
+  \begin{tabularx}{\linewidth}{
+    |>{\hsize=1.4\hsize}X|
+    >{\centering\arraybackslash\hsize=0.6\hsize}X|
+  }
+  \hline
+ \begin{center}Название метода\end{center} & Максимально допустимое значение \\
+ \hline
+ rsaKeyGeneration & \num{\rsaKeyGenerationMaxValue} \\
+ \hline
+ aesKeyGeneration & \num{\aesKeyGenerationMaxValue} \\
+ \hline
+ aesEncrypt & \num{\aesEncryptMaxValue} \\
+ \hline
+ aesDecrypt & \num{\aesDecryptMaxValue} \\
+ \hline
+ rsaEncrypt & \num{\rsaEncryptMaxValue} \\
+ \hline
+ rsaDecrypt & \num{\rsaDecryptMaxValue}} \\
+ \hline
+  \end{tabularx}
+\end{table}
+
+Отклонение от требуемого уровня производительности вычисляется по формуле:
+\begin{equation}\label{perfDifEquation}
+\perfDev = \perfLimit - \frac{\perfMax + \perfMin + \perfAverage}{3},
+\end{equation}
+\begin{explanation}
+где & $ \perfDev $ & отклонение производительности от нормы, секунд; \\
+    & $ \perfLimit $ & предельно допустимый показатель производительности, секунд; \\
+    & $ \perfMax $ & максимальное значение в измерении производительности, секунд; \\
+    & $ \perfMin $ & минимальное значение в измерении производительности, секунд; \\
+    & $ \perfAverage $ & среднее значение в измерении производительности, секунд; \\
+\end{explanation}
+
 \input{sections/052-calculations/paragraphs/rsakeygen}
 \input{sections/052-calculations/paragraphs/rsaenc}
-\newpage
 \input{sections/052-calculations/paragraphs/aesenc}
 
 В таблице \ref{sec:eng:performance:aesenc:result} приведены данные по всем измерениям. Для удобства использвоания значений, все результаты были увеличины в 10 раз. Важно отметить, что некоторые методы используются чаще остальных, поэтому разница между значениями может невилироваться частотой использования, например, генерация пары \textit{RSA} ключей выполняется только при первой авторизации в клиенте, в то время как генерация \textit{AES} ключа происходит при отправке каждого сообщения. Это же касается расшифровки сообщения: \textit{RSA} дешифрование применяется только при получении сообщения на фоновом потоке, а дальнейшее отображение (которое может повторяться столько раз, сколько сообщение будет попадать на экран) использует \textit{AES} дешифрование на главном потоке.
