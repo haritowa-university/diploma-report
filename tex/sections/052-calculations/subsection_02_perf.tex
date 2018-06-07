@@ -9,12 +9,64 @@
 	\item делегирует \textit{XCTest} запуск тестового кода 10 раз с замером потраченного времени на каждую попытку.
 \end{itemize}
 
+К программному средству выставлено требование высокой отзывчивости, которые, в том числе, выражаются в требованиях к производительноси методов шифрования, которые представлены в таблице \ref{sec:eng:performance:aesenc:expected}. Для удобства использвоания значений, все результаты и требуемые показатели были увеличины в 10 раз.
+
+\FPeval{\rsaKeyGenerationMaxValue}{60}
+\FPeval{\aesKeyGenerationMaxValue}{0.01}
+\FPeval{\aesEncryptMaxValue}{0.001}
+\FPeval{\aesDecryptMaxValue}{0.002}
+\FPeval{\rsaEncryptMaxValue}{0.01}
+\FPeval{\rsaDecryptMaxValue}{0.5}
+
+\newcommand{\perfDev}{\text{П}_\text{о}}
+\newcommand{\perfLimit}{\text{П}_\text{пд}}
+\newcommand{\perfMax}{\text{П}_\text{макс}}
+\newcommand{\perfMin}{\text{П}_\text{мин}}
+\newcommand{\perfAverage}{\text{П}_\text{ср}}
+
+\begin{table}[!ht]
+  \caption{Требования к производительности модуля криптографии iOS-клиента}
+  \label{sec:eng:performance:aesenc:expected}
+  \centering
+  \begin{tabularx}{\linewidth}{
+    |>{\hsize=1.4\hsize}X|
+    >{\centering\arraybackslash\hsize=0.6\hsize}X|
+  }
+  \hline
+ \begin{center}Название метода\end{center} & Максимально допустимое значение \\
+ \hline
+ rsaKeyGeneration & \num{\rsaKeyGenerationMaxValue} \\
+ \hline
+ aesKeyGeneration & \num{\aesKeyGenerationMaxValue} \\
+ \hline
+ aesEncrypt & \num{\aesEncryptMaxValue} \\
+ \hline
+ aesDecrypt & \num{\aesDecryptMaxValue} \\
+ \hline
+ rsaEncrypt & \num{\rsaEncryptMaxValue} \\
+ \hline
+ rsaDecrypt & \num{\rsaDecryptMaxValue} \\
+ \hline
+  \end{tabularx}
+\end{table}
+
+Отклонение от требуемого уровня производительности вычисляется по формуле:
+\begin{equation}\label{perfDifEquation}
+\perfDev = (\perfLimit - \frac{\perfMax + \perfMin + \perfAverage}{3}) \cdot \frac{1}{\perfLimit} \cdot 100,
+\end{equation}
+\begin{explanation}
+где & $ \perfDev $ & отклонение производительности от нормы; \\
+    & $ \perfLimit $ & предельно допустимый показатель производительности, секунд; \\
+    & $ \perfMax $ & максимальное значение в измерении производительности, секунд; \\
+    & $ \perfMin $ & минимальное значение в измерении производительности, секунд; \\
+    & $ \perfAverage $ & среднее значение в измерении производительности, секунд.
+\end{explanation}
+
 \input{sections/052-calculations/paragraphs/rsakeygen}
 \input{sections/052-calculations/paragraphs/rsaenc}
-\newpage
 \input{sections/052-calculations/paragraphs/aesenc}
 
-В таблице \ref{sec:eng:performance:aesenc:result} приведены данные по всем измерениям. Для удобства использвоания значений, все результаты были увеличины в 10 раз. Важно отметить, что некоторые методы используются чаще остальных, поэтому разница между значениями может невилироваться частотой использования, например, генерация пары \textit{RSA} ключей выполняется только при первой авторизации в клиенте, в то время как генерация \textit{AES} ключа происходит при отправке каждого сообщения. Это же касается расшифровки сообщения: \textit{RSA} дешифрование применяется только при получении сообщения на фоновом потоке, а дальнейшее отображение (которое может повторяться столько раз, сколько сообщение будет попадать на экран) использует \textit{AES} дешифрование на главном потоке.
+В таблице \ref{sec:eng:performance:aesenc:result} приведены данные по результатам всех измерений, а в таблице \ref{sec:eng:performance:aesenc:resultDev} -- результаты соотвтествующих вычислений отклонения измерений от максимально допустимой производительности. Важно отметить, что некоторые методы используются чаще остальных, поэтому разница между значениями может невилироваться частотой использования, например, генерация пары \textit{RSA} ключей выполняется только при первой авторизации в клиенте, в то время как генерация \textit{AES} ключа происходит при отправке каждого сообщения. Это же касается расшифровки сообщения: \textit{RSA} дешифрование применяется только при получении сообщения на фоновом потоке, а дальнейшее отображение (которое может повторяться столько раз, сколько сообщение будет попадать на экран) использует \textit{AES} дешифрование на главном потоке.
 
 \begin{table}[!ht]
   \caption{Результаты расчетов производительности модуля криптографии iOS-клиента}
@@ -29,19 +81,45 @@
 	\hline
  \begin{center}Название метода\end{center} & Максимальное значение &  Минимальное значение &  Среднее значение \\
  \hline
- rsaKeyGeneration & \num{62.4} & \num{11.3} & \num{32.1} \\
+ rsaKeyGeneration & \num{\rsaKeyGenMesaureMax} & \num{\rsaKeyGenMesaureMin} & \num{\rsaKeyGenMesaureAverage} \\
  \hline
- aesKeyGeneration & \num{0.00323} & \num{0.0000127} & \num{0.000357} \\
+ aesKeyGeneration & \num{\aesKeyGenMesaureMax} & \num{\aesKeyGenMesaureMin} & \num{\aesKeyGenMesaureAverage} \\
  \hline
- aesEncrypt & \num{0.000229} & \num{0.0000448} & \num{0.0000565} \\
+ aesEncrypt & \num{\aesEncMesaureMax} & \num{\aesEncMesaureMin} & \num{\aesEncMesaureAverage} \\
  \hline
- aesDecrypt & \num{0.000411} & \num{0.000034} & \num{0.000117} \\
+ aesDecrypt & \num{\aesDecMesaureMax} & \num{\aesDecMesaureMin} & \num{\aesDecMesaureAverage} \\
  \hline
- rsaEncrypt & \num{0.00423} & \num{0.00281} & \num{0.00352} \\
+ rsaEncrypt & \num{\rsaEncMesaureMax} & \num{\rsaEncMesaureMin} & \num{\rsaEncMesaureAverage} \\
  \hline
- rsaDecrypt & \num{0.236} & \num{0.224} & \num{0.228} \\
+ rsaDecrypt & \num{\rsaDecMesaureMax} & \num{\rsaDecMesaureMin} & \num{\rsaDecMesaureAverage} \\
  \hline
   \end{tabularx}
 \end{table}
 
-Как видно по результатам тестов, методы, связанные с \textit{RSA} шифрованием, работают значительно медленнее аналогичных, использующих \textit{AES}. Данное поведение является ожидаемым, именно поэтому при шифровании сообщения, генерируется \textit{AES} ключ, который шифруется для каждого получателя, а само сообщение шифруется \textit{AES} ключом.
+\begin{table}[!ht]
+  \caption{Результаты отклонения метрик производительности от предельно допустимых}
+  \label{sec:eng:performance:aesenc:resultDev}
+  \centering
+  \begin{tabularx}{\linewidth}{
+    |>{\hsize=1.4\hsize}X|
+    >{\centering\arraybackslash\hsize=0.6\hsize}X|
+  }
+  \hline
+ \begin{center}Название метода\end{center} & Отклонение \% \\
+ \hline
+ rsaKeyGeneration & \num{\perfDevRSAKeyGen} \\
+ \hline
+ aesKeyGeneration & \num{\perfDevAESKeyGen} \\
+ \hline
+ aesEncrypt & \num{\perfAESEnc} \\
+ \hline
+ aesDecrypt & \num{\perfAESDec} \\
+ \hline
+ rsaEncrypt & \num{\perfRSAEnc} \\
+ \hline
+ rsaDecrypt & \num{\perfRSADec} \\
+ \hline
+  \end{tabularx}
+\end{table}
+
+Как видно по результатам тестов, методы, связанные с \textit{RSA} шифрованием, работают значительно медленнее аналогичных, использующих \textit{AES}. Данное поведение является ожидаемым, именно поэтому при шифровании сообщения, генерируется \textit{AES} ключ, который шифруется для каждого получателя, а само сообщение шифруется \textit{AES} ключом. Все методы соотвтетсвуют ранее заявленным уровням производительности.

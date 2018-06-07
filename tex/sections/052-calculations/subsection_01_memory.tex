@@ -21,6 +21,42 @@
   \label{sec:eng:memory:used}
 \end{figure}
 
+\newcommand{\mcmd}{\text{П}_\text{д}}
+\newcommand{\mcms}{\text{П}_\text{н}}
+\newcommand{\mcmi}{\text{П}_\text{н}}
+\newcommand{\mcmtd}{\text{П}_\text{2}}
+\newcommand{\mcmts}{\text{П}_\text{3}}
+
+Для расчета объёма памяти, выделевшейся при переходе на экран списка диалогов, используется формула:
+\begin{equation}\label{dialogueMemoryConsumptionEquation}
+\mcmd = \mcmtd - \mcmi,
+\end{equation}
+\begin{explanation}
+где & $ \mcmtd $ & количество потребляемой памяти, на этапе открытия экрана диалогов, МБ; \\
+    & $ \mcmi $ & количество потребляемой памяти, после запуска клиента, МБ.
+\end{explanation}
+
+Рассчитаем объём потребляемой экраном списка диалогов памяти, подставив значения в формулу (\ref{dialogueMemoryConsumptionEquation}):
+\begin{center}
+\(\mcmd = \num{117} - \num{88.8} = \num{28.2} \, \text{МБ}\)
+\end{center}
+
+Для расчета объёма памяти, выделившейся при переходе на экран настроек, используется формула:
+\begin{equation}\label{settingsMemoryConsumptionEquation}
+\mcms = \mcmts - \mcmtd,
+\end{equation}
+\begin{explanation}
+где & $ \mcmts $ & количество потребляемой памяти, на этапе открытия экрана диалогов, МБ; \\
+    & $ \mcmi $ & количество потребляемой памяти, на этапе открытия экрана настроек, МБ.
+\end{explanation}
+
+Стоит отметить, что полученное значение отражает потребление памяти не только экраном, но сервисами приложения, инициализирующихся при переходе из начального состояния приложения в рабочее.
+
+Рассчитаем объём памяти, потребляемой экраном настроек, подставив значения в формулу (\ref{settingsMemoryConsumptionEquation}):
+\begin{center}
+\(\mcmd = \num{119} - \num{117} = \num{2} \, \text{МБ}\)
+\end{center}
+
 \textit{Xcode} хорошо подходит для беглого аудита потребления ресурсов клиентом, однако имеет ряд недостатков:
 
 \begin{itemize}
@@ -65,7 +101,11 @@
  \hline
  \emph{Экран диалогов} & \num{117} Мегабайт \\ 
  \hline
+ \emph{Прирост на экране диалогов} & \num{28.2} Мегабайт \\ 
+ \hline
  \emph{Экран настроек} & \num{119} Мегабайт \\ 
+ \hline
+ \emph{Прирост на экране настроек} & \num{2} Мегабайта \\ 
  \hline
 \end{tabularx}
 \end{table}
