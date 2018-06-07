@@ -12,14 +12,19 @@ class DeviceModel: Object {
 
     let owners = LinkingObjects(fromType: User.self, property: "devices")
 
+    let dialogues: LinkingObjects(fromType: Dialogue.self, property: "devices")
+
     @objc override class func primaryKey() -> String? {
         return "id"
     }
 
+    // We do not want to store temp value
     override static func ignoredProperties() -> [String] {
         return ["tmpID"]
     }
+}
 
+extension DeviceModel {
     public init(id: String, name: String, publicKey: Data, tmpID: Int) {
         self.id = id
         self.name = name
