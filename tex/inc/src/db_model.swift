@@ -19,4 +19,11 @@ class DeviceModel: Object {
     override static func ignoredProperties() -> [String] {
         return ["tmpID"]
     }
+
+    public init(id: String, name: String, publicKey: Data, tmpID: Int) {
+        self.id = id
+        self.name = name
+        self.publicKey = publicKey
+        self.tmpID = tmpID
+    }
 }
