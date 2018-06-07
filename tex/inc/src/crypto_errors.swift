@@ -1,4 +1,8 @@
-enum KeyGenerationError: Error {
+import Foundation
+import SwCrypt
+
+enum KeyGenerationError: Error 
+{
     case cantDeriveKeyFromPin(Error)
 
     case cantCreateAESKey
@@ -6,10 +10,17 @@ enum KeyGenerationError: Error {
     case cantConvertPemToRSAKey(Error)
 }
 
-enum CryptError: Error {
-    enum AESError: Error {
+enum CryptError: Error 
+{
+    enum AESError: Error 
+    {
         case cantEncrypt(Error)
         case cantDecrypt(Error)
+    }
+
+    enum RSAError {
+        case cantEncrypt(Error)
+        case cantDencrypt(Error)
     }
 
     case identityAlreadyExist(data: [UserCryptIdentity.IdentityKey])
@@ -19,5 +30,7 @@ enum CryptError: Error {
 
     case cantStoreIdentity
     case cantReadIdentity
+
+    // Case for any other error
     case unknown(error: Error)
 }
