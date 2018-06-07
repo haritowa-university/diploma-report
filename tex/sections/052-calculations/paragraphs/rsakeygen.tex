@@ -1,13 +1,13 @@
 \subsubsection{} Генерация криптографических ключей.
 \label{sec:eng:performance:rsakeygen}
 
-Метод \texttt{generateRSAKeyPair} необходим для генерации пары \textit{RSA} ключей (публичного и приватного), а метод \texttt{generateAESKey} -- для генераци симметричного \textit{AES} ключа. В листинге \ref{sec:eng:performance:rsakeygen:code} приведён код для тестирования метода генерации пары \textit{RSA} ключей, а на рисункe \ref{sec:eng:performance:result} -- результаты измерений генерации \textit{RSA} и \textit{AES} ключей соответственно.
+Метод \texttt{generateRSAKeyPair} необходим для генерации пары \textit{RSA} ключей (публичного и приватного), а метод \texttt{generateAESKey} -- для генераци симметричного \textit{AES} ключа. На рисунке \ref{sec:eng:performance:rsakeygen:code} приведён код для тестирования метода генерации пары \textit{RSA} ключей, а на рисункe \ref{sec:eng:performance:result} -- результаты измерений генерации \textit{RSA} и \textit{AES} ключей соответственно.
 
-\begin{code}
+\begin{figure}[h]
   \lstinputlisting{inc/src/perf/rsakeygen.swift}
    \caption{Тестовый метод для метода генерации пары RSA ключей}
    \label{sec:eng:performance:rsakeygen:code}
-\end{code}
+\end{figure}
 
 \begin{figure}[h]
   \centering

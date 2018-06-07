@@ -4,27 +4,27 @@
 Сетевой слой состоит из набора моделей запросов и ответов, описания \gls{http} \gls{api}, методы для отправки запросов, \gls{ws} клиент.
 
 Для парсинга JSON используется библиотека \textit{ObjectMapper}, которая позволяет при помощи операторов выразительным образом описать процесс сериализации и десереализации модели во многие форматы.
-В листинге \ref{sec:development:client:networking:code:deserialize} продемонстрировано описание десериализации модели пользователя и списка пользователей, а в листинге \ref{sec:development:client:networking:code:serialize} -- сериализация события отпраки сообщения.
+На рисунке \ref{sec:development:client:networking:code:deserialize} продемонстрировано описание десериализации модели пользователя и списка пользователей, а на рисунке \ref{sec:development:client:networking:code:serialize} -- сериализация события отпраки сообщения.
 
-\begin{code}
+\begin{figure}[h]
 	\lstinputlisting{inc/src/deserialization.swift}
    \caption{Десериализация модели пользователя и списка контактов}
    \label{sec:development:client:networking:code:deserialize}
-\end{code}
+\end{figure}
 
-\begin{code}
+\begin{figure}[h]
 	\lstinputlisting{inc/src/serialization.swift}
    \caption{Сериализация модели события отпраки сообщения}
    \label{sec:development:client:networking:code:serialize}
-\end{code}
+\end{figure}
 
-Как уже отмечалось в пункте \ref{sec:development:arch:pp:communication}, всё общение клиента с сервером происходит по определённому формату, для упрощения процесса сериализации, этот формат инкапсулирован в обобщённый тип \texttt{ResponseContainer}, который продемонстрирован в листинге \ref{sec:development:client:networking:code:deserialize:container}.
+Как уже отмечалось в пункте \ref{sec:development:arch:pp:communication}, всё общение клиента с сервером происходит по определённому формату, для упрощения процесса сериализации, этот формат инкапсулирован в обобщённый тип \texttt{ResponseContainer}, который продемонстрирован на рисунке \ref{sec:development:client:networking:code:deserialize:container}.
 
-\begin{code}
+\begin{figure}[h]
 	\lstinputlisting{inc/src/parsing_container.swift}
    \caption{Контейнер для десериализации данных}
    \label{sec:development:client:networking:code:deserialize:container}
-\end{code}
+\end{figure}
 
 Тип \textit{ChattySocket} отвечает за взаимодействие с сервером при помощи \gls{ws}. В качестве имплементации общения по протоколу \gls{ws} используется библиотека \textit{Starscream}, тип \textit{ChattySocket} является реактивной обёрткой, который добавляет поддержку авторизации, отправки запросов с использованием моделей приложения, аггрегацию ошибок и мониторинг состояния сети.
 
