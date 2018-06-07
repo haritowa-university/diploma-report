@@ -102,7 +102,7 @@
  \hline
  rsaDecrypt & \num{\rsaDecMesaureMax} & \num{\rsaDecMesaureMin} & \num{\rsaDecMesaureAverage} \\
  \hline
-  \end{tabularx}
+\end{tabularx}
 \end{table}
 
 Как видно по результатам тестов, методы, связанные с \textit{RSA} шифрованием, работают значительно медленнее аналогичных, использующих \textit{AES}. Данное поведение является ожидаемым, именно поэтому при шифровании сообщения, генерируется \textit{AES} ключ, который шифруется для каждого получателя, а само сообщение шифруется \textit{AES} ключом.
