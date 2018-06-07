@@ -25,12 +25,12 @@
 \end{minipage}
 \end{figure}
 
-\FPEval{\rsaKeyGenMesaureMax}{62.4}
-\FPEval{\rsaKeyGenMesaureMin}{11.3}
-\FPEval{\rsaKeyGenMesaureAverage}{32.1}
-\FPEval{\perfDevRSAKeyGen}{crop(rount((\rsaKeyGenerationMaxValue - (\rsaKeyGenMesaureMax + \rsaKeyGenMesaureMin + \rsaKeyGenMesaureMin) \ 3), 2))}
+% \FPEval{\rsaKeyGenMesaureMax}{62.4}
+% \FPEval{\rsaKeyGenMesaureMin}{11.3}
+% \FPEval{\rsaKeyGenMesaureAverage}{32.1}
+% \FPEval{\perfDevRSAKeyGen}{crop(rount((\rsaKeyGenerationMaxValue - (\rsaKeyGenMesaureMax + \rsaKeyGenMesaureMin + \rsaKeyGenMesaureMin) \ 3), 2))}
 
-Рассчитаем отклонение от предельно допустимого значения генерации \textit{RSA} ключа, подставив значения в формулу (\ref{perfDifEquation}):
-\begin{center}
-\(\perfDev = \num{\rsaKeyGenerationMaxValue} - \frac{\num{\rsaKeyGenMesaureMax} + \num{\rsaKeyGenMesaureMin} + \num{\rsaKeyGenMesaureAverage}}{3} = \num{perfDevRSAKeyGen} \, \text{сек}\)
-\end{center}
+% Рассчитаем отклонение от предельно допустимого значения генерации \textit{RSA} ключа, подставив значения в формулу (\ref{perfDifEquation}):
+% \begin{center}
+% \(\perfDev = \num{\rsaKeyGenerationMaxValue} - \frac{\num{\rsaKeyGenMesaureMax} + \num{\rsaKeyGenMesaureMin} + \num{\rsaKeyGenMesaureAverage}}{3} = \num{perfDevRSAKeyGen} \, \text{сек}\)
+% \end{center}
