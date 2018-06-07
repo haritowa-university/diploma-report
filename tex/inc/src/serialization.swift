@@ -12,3 +12,13 @@ extension SendMessageRequest: BaseRequest {
         receiverID >>> map["id"]
     }
 }
+
+struct SendMessagesRequest {
+	let messages: [SendMessageRequest]
+}
+
+extension SendMessagesRequest {
+	public func mapping(map: Map) {
+        messages >>> map["messages"]
+    }
+}
