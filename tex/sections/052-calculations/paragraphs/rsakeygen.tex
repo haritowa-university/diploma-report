@@ -28,19 +28,19 @@
 \FPeval{\rsaKeyGenMesaureMax}{62.4}
 \FPeval{\rsaKeyGenMesaureMin}{11.3}
 \FPeval{\rsaKeyGenMesaureAverage}{32.1}
-\FPeval{\perfDevRSAKeyGen}{clip(round((\rsaKeyGenerationMaxValue - (\rsaKeyGenMesaureMax + \rsaKeyGenMesaureMin + \rsaKeyGenMesaureAverage) / 3), 5))}
+\FPeval{\perfDevRSAKeyGen}{clip(round(((\rsaKeyGenerationMaxValue - (\rsaKeyGenMesaureMax + \rsaKeyGenMesaureMin + \rsaKeyGenMesaureAverage) / 3) / \rsaKeyGenerationMaxValue * 100), 2))}
 
 Рассчитаем отклонение от предельно допустимого значения генерации \textit{RSA} ключа, подставив значения в формулу (\ref{perfDifEquation}):
 \begin{center}
-\(\perfDev = \num{\rsaKeyGenerationMaxValue} - \frac{\num{\rsaKeyGenMesaureMax} + \num{\rsaKeyGenMesaureMin} + \num{\rsaKeyGenMesaureAverage}}{\num{3}} = \num{\perfDevRSAKeyGen} \, \text{сек}\)
+\(\perfDev = (\num{\rsaKeyGenerationMaxValue} - \frac{\num{\rsaKeyGenMesaureMax} + \num{\rsaKeyGenMesaureMin} + \num{\rsaKeyGenMesaureAverage}}{\num{3}}) \cdot \frac{\num{1}}{\num{\rsaKeyGenerationMaxValue}} \cdot 100  = \num{\perfDevRSAKeyGen} \, \text{\%}\)
 \end{center}
 
 \FPeval{\aesKeyGenMesaureMax}{0.00353}
 \FPeval{\aesKeyGenMesaureMin}{0.0000157}
 \FPeval{\aesKeyGenMesaureAverage}{0.000357}
-\FPeval{\perfDevAESKeyGen}{clip(round((\aesKeyGenerationMaxValue - (\aesKeyGenMesaureMax + \aesKeyGenMesaureMin + \aesKeyGenMesaureAverage) / 3), 5))}
+\FPeval{\perfDevAESKeyGen}{clip(round(((\aesKeyGenerationMaxValue - (\aesKeyGenMesaureMax + \aesKeyGenMesaureMin + \aesKeyGenMesaureAverage) / 3) / \rsaKeyGenerationMaxValue * 100), 2))}
 
 Аналогичным образом расчитаем отклонение от предельно допустимого значения генерации \textit{AES} ключа:
 \begin{center}
-\(\perfDev = \num{\aesKeyGenerationMaxValue} - \frac{\num{\aesKeyGenMesaureMax} + \num{\aesKeyGenMesaureMin} + \num{\aesKeyGenMesaureAverage}}{\num{3}} = \num{\perfDevAESKeyGen} \, \text{сек}\)
+\(\perfDev = (\num{\aesKeyGenerationMaxValue} - \frac{\num{\aesKeyGenMesaureMax} + \num{\aesKeyGenMesaureMin} + \num{\aesKeyGenMesaureAverage}}{\num{3}}) \cdot \frac{\num{1}}{\num{\aesKeyGenerationMaxValue}} \cdot 100  = \num{\perfDevAESKeyGen} \, \text{\%}\)
 \end{center}

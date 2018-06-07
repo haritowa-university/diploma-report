@@ -26,7 +26,7 @@
 
 Рассчитаем отклонение от предельно допустимого значения времени, затраченного на шифрование при помощи \textit{RSA}, подставив значения в формулу (\ref{perfDifEquation}):
 \begin{center}
-\(\perfDev = \num{\rsaEncryptMaxValue} - \frac{\num{\rsaEncMesaureMax} + \num{\rsaEncMesaureMin} + \num{\rsaEncMesaureAverage}}{\num{3}} \cdot \frac{\num{1}}{\num{\rsaEncryptMaxValue}} \cdot 100 = \num{\perfRSAEnc} \, \text{\%}\)
+\(\perfDev = (\num{\rsaEncryptMaxValue} - \frac{\num{\rsaEncMesaureMax} + \num{\rsaEncMesaureMin} + \num{\rsaEncMesaureAverage}}{\num{3}}) \cdot \frac{\num{1}}{\num{\rsaEncryptMaxValue}} \cdot 100 = \num{\perfRSAEnc} \, \text{\%}\)
 \end{center}
 
 \FPeval{\rsaDecMesaureMax}{0.236}
@@ -36,5 +36,5 @@
 
 Для дешифровки, при помощи алгоритма \textit{RSA}, рассчитаем аналогичное значение:
 \begin{center}
-\(\perfDev = \num{\rsaDecryptMaxValue} - \frac{\num{\rsaDecMesaureMax} + \num{\rsaDecMesaureMin} + \num{\rsaDecMesaureAverage}}{\num{3}} \cdot \frac{\num{1}}{\num{\rsaDecryptMaxValue}} \cdot 100 = \num{\perfRSADec} \, \text{\%}\)
+\(\perfDev = (\num{\rsaDecryptMaxValue} - \frac{\num{\rsaDecMesaureMax} + \num{\rsaDecMesaureMin} + \num{\rsaDecMesaureAverage}}{\num{3}}) \cdot \frac{\num{1}}{\num{\rsaDecryptMaxValue}} \cdot 100 = \num{\perfRSADec} \, \text{\%}\)
 \end{center}
