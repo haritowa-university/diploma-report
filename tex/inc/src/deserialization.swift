@@ -1,3 +1,7 @@
+import Foundation
+import ObjectMapper
+import ChatCore
+
 struct UserResponse: ImmutableMappable {
     let name: String
     
@@ -16,7 +20,19 @@ struct UserResponse: ImmutableMappable {
 struct ContactListResponse: ImmutableMappable {
     let users: [UserResponse]
 
+    public static func empty() -> ContactListResponse {
+        return ContactListResponse(users: [])
+    }
+}
+
+public extension ContactListResponse {
     public init(map: Map) throws {
-        users = try map.value("contacts")
+        do {
+            users = try map.value("contacts")
+        } catch (MappingError.keyNotFound) {
+            users = []
+        } catch {
+            throw error
+        }
     }
 }
