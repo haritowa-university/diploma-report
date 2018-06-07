@@ -18,3 +18,23 @@
   \label{sec:eng:performance:rsaenc:dec}
 \end{minipage}
 \end{figure}
+
+\FPeval{\rsaEncMesaureMax}{0.00423}
+\FPeval{\rsaEncMesaureMin}{0.00281}
+\FPeval{\rsaEncMesaureAverage}{0.00352}
+\FPeval{\perfRSAEnc}{clip(round((\rsaEncryptMaxValue - (\rsaEncMesaureMax + \rsaEncMesaureMin + \rsaEncMesaureAverage) / 3), 5))}
+
+Рассчитаем отклонение от предельно допустимого значения времени, затраченного на шифрование при помощи \textit{RSA}, подставив значения в формулу (\ref{perfDifEquation}):
+\begin{center}
+\(\perfDev = \num{\rsaEncryptMaxValue} - \frac{\num{\rsaEncMesaureMax} + \num{\rsaEncMesaureMin} + \num{\rsaEncMesaureAverage}}{\num{3}} = \num{\perfRSAEnc} \, \text{сек}\)
+\end{center}
+
+\FPeval{\rsaDecMesaureMax}{0.236}
+\FPeval{\rsaDecMesaureMin}{0.224}
+\FPeval{\rsaDecMesaureAverage}{0.228}
+\FPeval{\perfRSADec}{clip(round((\rsaDecryptMaxValue - (\rsaDecMesaureMax + \rsaDecMesaureMin + \rsaDecMesaureAverage) / 3), 5))}
+
+Для дешифровки, при помощи алгоритма \textit{RSA}, рассчитаем аналогичное значение:
+\begin{center}
+\(\perfDev = \num{\rsaDecryptMaxValue} - \frac{\num{\rsaDecMesaureMax} + \num{\rsaDecMesaureMin} + \num{\rsaDecMesaureAverage}}{\num{3}} = \num{\perfRSADec} \, \text{сек}\)
+\end{center}

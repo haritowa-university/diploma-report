@@ -40,7 +40,7 @@
 \FPeval{\aesKeyGenMesaureAverage}{0.000357}
 \FPeval{\perfDevAESKeyGen}{clip(round((\aesKeyGenerationMaxValue - (\aesKeyGenMesaureMax + \aesKeyGenMesaureMin + \aesKeyGenMesaureAverage) / 3), 5))}
 
-Аналогичным образом расчитаем тклонение от предельно допустимого значения генерации \textit{AES} ключа:
+Аналогичным образом расчитаем отклонение от предельно допустимого значения генерации \textit{AES} ключа:
 \begin{center}
 \(\perfDev = \num{\aesKeyGenerationMaxValue} - \frac{\num{\aesKeyGenMesaureMax} + \num{\aesKeyGenMesaureMin} + \num{\aesKeyGenMesaureAverage}}{\num{3}} = \num{\perfDevAESKeyGen} \, \text{сек}\)
 \end{center}
