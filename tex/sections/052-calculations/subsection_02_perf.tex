@@ -68,6 +68,15 @@
 
 В таблице \ref{sec:eng:performance:aesenc:result} приведены данные по всем измерениям. Важно отметить, что некоторые методы используются чаще остальных, поэтому разница между значениями может невилироваться частотой использования, например, генерация пары \textit{RSA} ключей выполняется только при первой авторизации в клиенте, в то время как генерация \textit{AES} ключа происходит при отправке каждого сообщения. Это же касается расшифровки сообщения: \textit{RSA} дешифрование применяется только при получении сообщения на фоновом потоке, а дальнейшее отображение (которое может повторяться столько раз, сколько сообщение будет попадать на экран) использует \textit{AES} дешифрование на главном потоке.
 
+% \perfAESEnc
+% \perfAESDec
+
+% \perfRSAEnc
+% \perfRSADec
+
+% \perfDevRSAKeyGen
+% \perfDevAESKeyGen
+
 \begin{table}[!ht]
   \caption{Результаты расчетов производительности модуля криптографии iOS-клиента}
   \label{sec:eng:performance:aesenc:result}
@@ -79,19 +88,19 @@
     >{\centering\arraybackslash\hsize=0.8\hsize}X|
   }
 	\hline
- \begin{center}Название метода\end{center} & Максимальное значение &  Минимальное значение &  Среднее значение \\
+ \begin{center}Название метода\end{center} & Максимальное значение &  Минимальное значение &  Среднее значение & Отклонение \\
  \hline
- rsaKeyGeneration & \num{62.4} & \num{11.3} & \num{32.1} \\
+ rsaKeyGeneration & \num{\rsaKeyGenMesaureMax} & \num{\rsaKeyGenMesaureMin} & \num{\rsaKeyGenMesaureAverage} \\
  \hline
- aesKeyGeneration & \num{0.00323} & \num{0.0000127} & \num{0.000357} \\
+ aesKeyGeneration & \num{\aesKeyGenMesaureMax} & \num{\aesKeyGenMesaureMin} & \num{\aesKeyGenMesaureAverage} \\
  \hline
- aesEncrypt & \num{0.000229} & \num{0.0000448} & \num{0.0000565} \\
+ aesEncrypt & \num{\aesEncMesaureMax} & \num{\aesEncMesaureMin} & \num{\aesEncMesaureAverage} \\
  \hline
- aesDecrypt & \num{0.000411} & \num{0.000034} & \num{0.000117} \\
+ aesDecrypt & \num{\aesDecMesaureMax} & \num{\aesDecMesaureMin} & \num{\aesDecMesaureAverage} \\
  \hline
- rsaEncrypt & \num{0.00423} & \num{0.00281} & \num{0.00352} \\
+ rsaEncrypt & \num{\rsaEncMesaureMax} & \num{\rsaEncMesaureMin} & \num{\rsaEncMesaureAverage} \\
  \hline
- rsaDecrypt & \num{0.236} & \num{0.224} & \num{0.228} \\
+ rsaDecrypt & \num{\rsaDecMesaureMax} & \num{\rsaDecMesaureMin} & \num{\rsaDecMesaureAverage} \\
  \hline
   \end{tabularx}
 \end{table}
