@@ -32,7 +32,7 @@
 
 Рассчитаем отклонение от предельно допустимого значения генерации \textit{RSA} ключа, подставив значения в формулу (\ref{perfDifEquation}):
 \begin{center}
-\(\perfDev = \num{\rsaKeyGenerationMaxValue} - \frac{\num{\rsaKeyGenMesaureMax} + \num{\rsaKeyGenMesaureMin} + \num{\rsaKeyGenMesaureAverage}}{\num{3}} = \num{perfDevRSAKeyGen} \, \text{сек}\)
+\(\perfDev = \num{\rsaKeyGenerationMaxValue} - \frac{\num{\rsaKeyGenMesaureMax} + \num{\rsaKeyGenMesaureMin} + \num{\rsaKeyGenMesaureAverage}}{\num{3}} = \num{\perfDevRSAKeyGen} \, \text{сек}\)
 \end{center}
 
 \FPeval{\aesKeyGenMesaureMax}{62.4}
@@ -42,5 +42,5 @@
 
 Аналогичным образом расчитаем тклонение от предельно допустимого значения генерации \textit{AES} ключа:
 \begin{center}
-\(\perfDev = \num{\aesKeyGenerationMaxValue} - \frac{\num{\aesKeyGenMesaureMax} + \num{\aesKeyGenMesaureMin} + \num{\aesKeyGenMesaureAverage}}{\num{3}} = \num{perfDevAESKeyGen} \, \text{сек}\)
+\(\perfDev = \num{\aesKeyGenerationMaxValue} - \frac{\num{\aesKeyGenMesaureMax} + \num{\aesKeyGenMesaureMin} + \num{\aesKeyGenMesaureAverage}}{\num{3}} = \num{\perfDevAESKeyGen} \, \text{сек}\)
 \end{center}
