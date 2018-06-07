@@ -25,31 +25,31 @@
 \newcommand{\perfMin}{\text{П}_\text{мин}}
 \newcommand{\perfAverage}{\text{П}_\text{ср}}
 
-\begin{table}[!ht]
-  \caption{Требования к производительности модуля криптографии iOS-клиента}
-  \label{sec:eng:performance:aesenc:expected}
-  \centering
-  \begin{tabularx}{\linewidth}{
-    |>{\hsize=1.4\hsize}X|
-    >{\centering\arraybackslash\hsize=0.6\hsize}X|
-  }
-  \hline
- \begin{center}Название метода\end{center} & Максимально допустимое значение \\
- \hline
- rsaKeyGeneration & \num{\rsaKeyGenerationMaxValue} \\
- \hline
- aesKeyGeneration & \num{\aesKeyGenerationMaxValue} \\
- \hline
- aesEncrypt & \num{\aesEncryptMaxValue} \\
- \hline
- aesDecrypt & \num{\aesDecryptMaxValue} \\
- \hline
- rsaEncrypt & \num{\rsaEncryptMaxValue} \\
- \hline
- rsaDecrypt & \num{\rsaDecryptMaxValue}} \\
- \hline
-  \end{tabularx}
-\end{table}
+% \begin{table}[!ht]
+%   \caption{Требования к производительности модуля криптографии iOS-клиента}
+%   \label{sec:eng:performance:aesenc:expected}
+%   \centering
+%   \begin{tabularx}{\linewidth}{
+%     |>{\hsize=1.4\hsize}X|
+%     >{\centering\arraybackslash\hsize=0.6\hsize}X|
+%   }
+%   \hline
+%  \begin{center}Название метода\end{center} & Максимально допустимое значение \\
+%  \hline
+%  rsaKeyGeneration & \num{\rsaKeyGenerationMaxValue} \\
+%  \hline
+%  aesKeyGeneration & \num{\aesKeyGenerationMaxValue} \\
+%  \hline
+%  aesEncrypt & \num{\aesEncryptMaxValue} \\
+%  \hline
+%  aesDecrypt & \num{\aesDecryptMaxValue} \\
+%  \hline
+%  rsaEncrypt & \num{\rsaEncryptMaxValue} \\
+%  \hline
+%  rsaDecrypt & \num{\rsaDecryptMaxValue}} \\
+%  \hline
+%   \end{tabularx}
+% \end{table}
 
 Отклонение от требуемого уровня производительности вычисляется по формуле:
 % \begin{equation}\label{perfDifEquation}
