@@ -35,9 +35,9 @@
 \(\perfDev = \num{\rsaKeyGenerationMaxValue} - \frac{\num{\rsaKeyGenMesaureMax} + \num{\rsaKeyGenMesaureMin} + \num{\rsaKeyGenMesaureAverage}}{\num{3}} = \num{\perfDevRSAKeyGen} \, \text{сек}\)
 \end{center}
 
-\FPeval{\aesKeyGenMesaureMax}{62.4}
-\FPeval{\aesKeyGenMesaureMin}{11.3}
-\FPeval{\aesKeyGenMesaureAverage}{32.1}
+\FPeval{\aesKeyGenMesaureMax}{0.00323}
+\FPeval{\aesKeyGenMesaureMin}{0.0000127}
+\FPeval{\aesKeyGenMesaureAverage}{0.000357}
 \FPeval{\perfDevAESKeyGen}{clip(round((\aesKeyGenerationMaxValue - (\aesKeyGenMesaureMax + \aesKeyGenMesaureMin + \aesKeyGenMesaureAverage) / 3), 2))}
 
 Аналогичным образом расчитаем тклонение от предельно допустимого значения генерации \textit{AES} ключа:
