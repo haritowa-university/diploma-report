@@ -52,7 +52,7 @@
 
 Отклонение от требуемого уровня производительности вычисляется по формуле:
 \begin{equation}\label{perfDifEquation}
-\perfDev = \perfLimit - \frac{\perfMax + \perfMin + \perfAverage}{3} \cdot \frac{1}{\perfLimit} \cdot 100,
+\perfDev = (\perfLimit - \frac{\perfMax + \perfMin + \perfAverage}{3}) \cdot \frac{1}{\perfLimit} \cdot 100,
 \end{equation}
 \begin{explanation}
 где & $ \perfDev $ & отклонение производительности от нормы; \\
