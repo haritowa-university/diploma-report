@@ -1,11 +1,11 @@
 \subsubsection{} Генерация криптографических ключей.
 \label{sec:eng:performance:rsakeygen}
 
-Метод \textit{generateRSAKeyPair} необходим для генерации пары \textit{RSA} ключей (публичного и приватного), а метод \textit{generateAESKey} -- для генераци симметричного \textit{AES} ключа. На рисунке \ref{sec:eng:performance:rsakeygen:code} приведён код для тестирования метода генерации пары \textit{RSA} ключей, а на рисункe \ref{sec:eng:performance:result} -- результаты измерений генерации \textit{RSA} и \textit{AES} ключей соответственно.
+Метод \textit{generateRSAKeyPair} необходим для~генерации пары \textit{RSA} ключей (публичного и~приватного), а~метод \textit{generateAESKey} -- для~генераци симметричного \textit{AES} ключа. На~рисунке \ref{sec:eng:performance:rsakeygen:code} приведён код для~тестирования метода генерации пары \textit{RSA} ключей, а~на~рисункe \ref{sec:eng:performance:result} -- результаты измерений генерации \textit{RSA} и~\textit{AES} ключей соответственно.
 
 \begin{figure}[h]
   \lstinputlisting{inc/src/perf/rsakeygen.swift}
-   \caption{Тестовый метод для метода генерации пары RSA ключей}
+   \caption{Тестовый метод для~метода генерации пары RSA ключей}
    \label{sec:eng:performance:rsakeygen:code}
 \end{figure}
 
@@ -21,7 +21,7 @@
 \FPeval{\rsaKeyGenMesaureAverage}{32.1}
 \FPeval{\perfDevRSAKeyGen}{clip(round(((\rsaKeyGenerationMaxValue - (\rsaKeyGenMesaureMax + \rsaKeyGenMesaureMin + \rsaKeyGenMesaureAverage) / 3) / \rsaKeyGenerationMaxValue * 100), 2))}
 
-Рассчитаем отклонение от предельно допустимого значения генерации \textit{RSA} ключа, подставив значения в формулу (\ref{perfDifEquation}):
+Рассчитаем отклонение от~предельно допустимого значения генерации \textit{RSA} ключа, подставив значения в~формулу (\ref{perfDifEquation}):
 \begin{center}
 \(\perfDev = (\num{\rsaKeyGenerationMaxValue} - \frac{\num{\rsaKeyGenMesaureMax} + \num{\rsaKeyGenMesaureMin} + \num{\rsaKeyGenMesaureAverage}}{\num{3}}) \cdot \frac{\num{1}}{\num{\rsaKeyGenerationMaxValue}} \cdot 100  = \num{\perfDevRSAKeyGen} \, \text{\%}\)
 \end{center}
@@ -31,7 +31,7 @@
 \FPeval{\aesKeyGenMesaureAverage}{0.000357}
 \FPeval{\perfDevAESKeyGen}{clip(round(((\aesKeyGenerationMaxValue - (\aesKeyGenMesaureMax + \aesKeyGenMesaureMin + \aesKeyGenMesaureAverage) / 3) / \rsaKeyGenerationMaxValue * 100), 2))}
 
-Аналогичным образом расчитаем отклонение от предельно допустимого значения генерации \textit{AES} ключа:
+Аналогичным образом расчитаем отклонение от~предельно допустимого значения генерации \textit{AES} ключа:
 \begin{center}
 \(\perfDev = (\num{\aesKeyGenerationMaxValue} - \frac{\num{\aesKeyGenMesaureMax} + \num{\aesKeyGenMesaureMin} + \num{\aesKeyGenMesaureAverage}}{\num{3}}) \cdot \frac{\num{1}}{\num{\aesKeyGenerationMaxValue}} \cdot 100  = \num{\perfDevAESKeyGen} \, \text{\%}\)
 \end{center}

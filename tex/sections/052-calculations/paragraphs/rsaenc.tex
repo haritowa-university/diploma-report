@@ -1,7 +1,7 @@
-\subsubsection{} \textit{RSA} шифровка и расшифровка.
+\subsubsection{} \textit{RSA} шифровка и~расшифровка.
 \label{sec:eng:performance:rsaenc}
 
-Метод \textit{rsaEncrypt} необходим для зашифровки данных при помощи алгоритма \textit{RSA}, а метод \textit{rsaDecrypt} -- для расшифровки данных, зашифрованных при помощи \textit{RSA}. На рисунке \ref{sec:eng:performance:rsaenc:image} представлены результаты производительности модуля \textit{RSA}.
+Метод \textit{rsaEncrypt} необходим для~зашифровки данных при помощи алгоритма \textit{RSA}, а~метод \textit{rsaDecrypt} -- для~расшифровки данных, зашифрованных при помощи \textit{RSA}. На~рисунке \ref{sec:eng:performance:rsaenc:image} представлены результаты производительности модуля \textit{RSA}.
 
 \begin{figure}[h]
   \centering
@@ -15,7 +15,7 @@
 \FPeval{\rsaEncMesaureAverage}{0.00352}
 \FPeval{\perfRSAEnc}{clip(round(((\rsaEncryptMaxValue - (\rsaEncMesaureMax + \rsaEncMesaureMin + \rsaEncMesaureAverage) / 3) / \rsaEncryptMaxValue) * 100, 2))}
 
-Рассчитаем отклонение от предельно допустимого значения времени, затраченного на шифрование при помощи \textit{RSA}, подставив значения в формулу (\ref{perfDifEquation}):
+Рассчитаем отклонение от~предельно допустимого значения времени, затраченного на~шифрование при помощи \textit{RSA}, подставив значения в~формулу (\ref{perfDifEquation}):
 \begin{center}
 \(\perfDev = (\num{\rsaEncryptMaxValue} - \frac{\num{\rsaEncMesaureMax} + \num{\rsaEncMesaureMin} + \num{\rsaEncMesaureAverage}}{\num{3}}) \cdot \frac{\num{1}}{\num{\rsaEncryptMaxValue}} \cdot 100 = \num{\perfRSAEnc} \, \text{\%}\)
 \end{center}
